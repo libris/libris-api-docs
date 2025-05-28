@@ -2,8 +2,7 @@
 site_name: Libris API-dokumentation
 repo_url: https://github.com/libris/libris-api-docs
 nav:
-  - Start:
-    - index.md
+  - Start: index.md
   - Handledningar:
     - tutorial/search.md
     - tutorial/sparql.md
