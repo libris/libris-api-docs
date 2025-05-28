@@ -1,6 +1,7 @@
 # Ex: https://github.com/ultrabug/mkdocs-static-i18n/blob/main/mkdocs.yml
 site_name: Libris API-dokumentation
 repo_url: https://github.com/libris/libris-api-docs
+repo_name: libris-api-docs
 nav:
   - Start: index.md
   - Handledningar:
@@ -58,6 +59,7 @@ markdown_extensions:
   - pymdownx.magiclink
 theme:
   name: material
+  custom_dir: overrides
   font: false
   features:
     - content.action.edit
