@@ -1,6 +1,6 @@
 # Ex: https://github.com/ultrabug/mkdocs-static-i18n/blob/main/mkdocs.yml
 site_name: Libris API-dokumentation
-repo_url: https://github.com/libris/libris-docs
+repo_url: https://github.com/libris/libris-api-docs
 nav:
   - Start:
     - index.md
@@ -61,6 +61,7 @@ theme:
   name: material
   font: false
   features:
+    - content.action.edit
     - content.code.copy
     - navigation.indexes
     - navigation.sections
@@ -88,5 +89,7 @@ plugins:
             Handledningar (tutorials): Tutorials
             Instruktionsguider (how-to): How-to
             Referens: Reference
+  - git-revision-date-localized:
+      type: iso_datetime
 extra_css:
   - stylesheets/extra.css
