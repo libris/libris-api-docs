@@ -1,0 +1,92 @@
+# Ex: https://github.com/ultrabug/mkdocs-static-i18n/blob/main/mkdocs.yml
+site_name: Libris API-dokumentation
+repo_url: https://github.com/libris/libris-docs
+nav:
+  - Start:
+    - index.md
+  - Handledningar:
+    - tutorial/search.md
+    - tutorial/sparql.md
+  - Instruktionsguider:
+    #- howto/index.md
+    - howto/auth.md
+    - howto/xsearch_migration.md
+    - howto/sparql_examples.md
+    - howto/emm.md
+  - Referens:
+    - reference/libris_environments.md
+    #- REST-API: reference/restapi.md
+    - Jobba med Libris-poster:
+      - reference/glossary.md
+      - reference/crud_get.md
+      - reference/crud_post.md
+      - reference/crud_put.md
+      - reference/crud_delete.md
+      - reference/_dependencies.md
+      - reference/_findhold.md
+      - reference/_compilemarc.md
+      - reference/_convert.md
+    - "Sök-API:er":
+      - reference/find.md
+      - reference/sparql.md
+      - reference/_remotesearch.md
+    - "Export-API:er":
+      - reference/emm.md
+      - reference/marc21.md
+      - reference/oaipmh.md
+      - reference/sru.md
+    - Biblioteksdatabasen: reference/bibdb.md
+  - Förklaringar:
+    - explanation/rdf.md
+    - explanation/libris.md
+markdown_extensions:
+  - admonition
+  - attr_list
+  - toc:
+      permalink: true
+  - tables
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.details
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.magiclink
+theme:
+  name: material
+  font: false
+  features:
+    - content.code.copy
+    - navigation.indexes
+    - navigation.sections
+    #- navigation.tabs
+    - navigation.expand
+    - navigation.tracking
+  palette:
+    primary: green
+plugins:
+  - search
+  - i18n:
+      docs_structure: suffix
+      languages:
+        - locale: sv
+          default: true
+          name: Svenska
+          build: true
+          site_name: "Libris API-dokumentation"
+        - locale: en
+          name: English
+          build: true
+          site_name: "Libris API documentation"
+          nav_translations:
+            Hem: Home
+            Handledningar (tutorials): Tutorials
+            Instruktionsguider (how-to): How-to
+            Referens: Reference
+extra_css:
+  - stylesheets/extra.css
