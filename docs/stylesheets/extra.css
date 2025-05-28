@@ -2,3 +2,119 @@ code {
     white-space : pre-wrap !important;
     word-break: break-word;
 }
+
+.md-header {
+    background-color: var(--color-primary-100);
+    color: var(--color-body);
+}
+
+@media screen and (max-width: 76.2344em) {
+  .md-nav--primary .md-nav__title[for="__drawer"] {
+      background-color: var(--color-app-header);
+      color: var(--color-body);
+  }
+}
+
+.md-search__form {
+    background-color: var(--color-input);
+    color: var(--color-body);
+}
+
+.md-search__input + .md-search__icon {
+    color: var(--color-subtle);
+}
+
+[data-md-color-primary=libris] {
+  --md-primary-fg-color:var(--color-primary-600);
+  --md-primary-fg-color--light:var(--color-primary-300);
+  --md-primary-fg-color--dark:var(--color-primary-900);
+  --md-primary-bg-color:var(--color-page);
+  --md-primary-bg-color--light:#ffffffb3
+}
+
+[data-md-color-accent=libris] {
+  --md-accent-fg-color:var(--color-accent-600);
+  --md-accent-fg-color--transparent:#00c7531a;
+  --md-accent-bg-color:var(--color-page);
+  --md-accent-bg-color--light:#ffffffb3
+}
+
+:root {
+	--color-primary-50: oklch(97.93% 0.014 124.55);
+	--color-primary-100: oklch(95.92% 0.029 121.98);
+	--color-primary-200: oklch(90.73% 0.063 123.24);
+	--color-primary-300: oklch(85.59% 0.097 124.19);
+	--color-primary-400: oklch(79.68% 0.136 125.41);
+	--color-primary-500: oklch(72.74% 0.156 126.68);
+	--color-primary-600: oklch(66.86% 0.143 126.48);
+	--color-primary-700: oklch(61.09% 0.129 126.63);
+	--color-primary-800: oklch(54% 0.113 126.21);
+	--color-primary-900: oklch(42.94% 0.087 126.62);
+	--color-primary-950: oklch(33.73% 0.064 125.83);
+	--color-primary: var(--color-primary-500);
+
+	--color-accent-50: oklch(96.75% 0.017 242.42);
+	--color-accent-100: oklch(93.47% 0.035 241.45);
+	--color-accent-200: oklch(86.4% 0.074 241.98);
+	--color-accent-300: oklch(78.37% 0.119 243.24);
+	--color-accent-400: oklch(67.77% 0.178 248.77);
+	--color-accent-500: oklch(52.25% 0.152 251.05);
+	--color-accent-600: oklch(48% 0.139 250.8);
+	--color-accent-700: oklch(45.04% 0.128 250.28);
+	--color-accent-800: oklch(39.6% 0.113 250.2);
+	--color-accent-900: oklch(30.64% 0.084 248.52);
+	--color-accent-950: oklch(20.98% 0.052 244.04);
+	--color-accent: var(--color-accent-500);
+
+	--color-neutral-50: oklch(0.985 0 0);
+	--color-neutral-100: oklch(0.97 0 0);
+	--color-neutral-200: oklch(0.922 0 0);
+	--color-neutral-300: oklch(0.87 0 0);
+	--color-neutral-400: oklch(0.708 0 0);
+	--color-neutral-500: oklch(0.556 0 0);
+	--color-neutral-600: oklch(0.439 0 0);
+	--color-neutral-700: oklch(0.371 0 0);
+	--color-neutral-800: oklch(0.269 0 0);
+	--color-neutral-900: oklch(0.205 0 0);
+	--color-neutral-950: oklch(0.145 0 0);
+	--color-neutral: var(--color-neutral-200);
+
+	--color-warning-50: oklch(97.86% 0.016 79.35);
+	--color-warning-100: oklch(96.23% 0.029 80.66);
+	--color-warning-200: oklch(91.99% 0.061 80.61);
+	--color-warning-300: oklch(88.23% 0.089 79.03);
+	--color-warning-400: oklch(84.82% 0.114 78.04);
+	--color-warning-500: oklch(81.33% 0.138 76.51);
+	--color-warning-600: oklch(75.93% 0.16 70.34);
+	--color-warning-700: oklch(61.67% 0.131 70.3);
+	--color-warning-800: oklch(45.81% 0.095 71.23);
+	--color-warning-900: oklch(29.68% 0.059 74.66);
+	--color-warning-950: oklch(19.23% 0.035 77.72);
+	--color-warning: var(--color-warning-500);
+
+	--color-severe-50: oklch(95% 0.017 13.1);
+	--color-severe-100: oklch(90.11% 0.037 13.71);
+	--color-severe-200: oklch(80.51% 0.075 15.76);
+	--color-severe-300: oklch(72.15% 0.115 16.94);
+	--color-severe-400: oklch(63.74% 0.157 19.79);
+	--color-severe-500: oklch(56.91% 0.194 23.85);
+	--color-severe-600: oklch(48.83% 0.169 23.68);
+	--color-severe-700: oklch(40.04% 0.135 23.32);
+	--color-severe-800: oklch(29.84% 0.094 22.52);
+	--color-severe-900: oklch(19.91% 0.055 20.06);
+	--color-severe-950: oklch(14.45% 0.031 21.73);
+	--color-severe: var(--color-severe-500);
+
+    --color-black: #000;
+	--color-white: #fff;
+
+    --color-page: var(--color-white);
+	--color-body: var(--color-neutral-800);
+	--color-subtle: var(--color-neutral-600);
+	--color-link: var(--color-accent);
+	--color-error: var(--color-severe);
+	--color-app-header: var(--color-primary-100);
+	--color-input: var(--color-page);
+
+	--color-placeholder: var(--color-neutral-500);
+}

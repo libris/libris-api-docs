@@ -70,7 +70,7 @@ theme:
     - navigation.expand
     - navigation.tracking
   palette:
-    primary: green
+    primary: libris
 plugins:
   - search
   - i18n:
