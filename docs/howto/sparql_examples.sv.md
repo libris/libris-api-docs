@@ -2,7 +2,7 @@
 title: SPARQL-exempelfrågor
 ---
 
-Detta dokument innehåller ett antal exempelfrågor som demonstrerar hur vår [SPARQL endpoint](https://libris.kb.se/sparql/) kan användas för uttag av statistik från Libris XL.
+Detta dokument innehåller ett antal exempelfrågor som demonstrerar hur vår [SPARQL-endpoint](https://libris.kb.se/sparql/) kan användas för uttag av statistik från Libris XL.
 Vill man förstå syntaxen kan man med fördel läsa [W3C:s specifikation av SPARQL](https://www.w3.org/TR/sparql11-query/).
 
 Resurserna är beskrivna med termer ur [KB:s vokabulär](https://id.kb.se/vocab/) (KBV).
@@ -21,7 +21,11 @@ Vanliga [namnrymdsprefix](https://www.w3.org/TR/sparql11-query/#prefNames) är [
 Dessa kan användas i frågorna utan att behöva deklareras explicit.
 För termer ur KBV fungerar det fördefinierade prefixet `kbv:`, men i exempelfrågorna som följer använder vi istället standardprefixet `:` (deklareras explicit) för bättre läsbarhet.
 
-#### Hur många romaner gavs ut i Sverige under 2019?
+Du kan också använda alternativa gränssnitt, t.ex. [Yasgui](https://yasgui.triply.cc/). Ange då `https://libris.kb.se/sparql` som endpoint.
+
+Observera att enklare frågor också kan besvaras med hjälp av [sök-API:et](../reference/find.md).
+
+### Hur många romaner gavs ut i Sverige under 2019?
 ```sparql
 PREFIX : <https://id.kb.se/vocab/>
 
@@ -40,7 +44,7 @@ I nuvarande data identifieras romaner med genre/form-termen `marc:Novel`, men f�
 I denna fråga och många av de följande används s.k. [property paths](https://www.w3.org/TR/sparql11-query/#propertypaths)
 för att inte behöva skriva ut varje trippel i sin helhet.
 
-#### Vilka språk finns Selma Lagerlöf översatt till?
+### Vilka språk finns Selma Lagerlöf översatt till?
 ```sparql
 PREFIX : <https://id.kb.se/vocab/>
 
@@ -58,7 +62,7 @@ SELECT DISTINCT ?language ?langName {
 **Kommentar:**  
 Här förutsätter vi att författaren alltid ligger som länkad entitet under `:agent`. En variant för att matcha även lokala entiteter vore att byta ut URI:n `<https://libris.kb.se/qn247n18248vs58#it>` mot en blanknod `[ :givenName "Selma" ; :familyName "Lagerlöf" ]`. Detta fungerar dock dåligt i det fall författaren har ett mer generiskt namn.  
 
-#### Vilka språk har svensk utgivning översatts till mellan åren 2000-2010?
+### Vilka språk har svensk utgivning översatts till mellan åren 2000-2010?
 ```sparql
 PREFIX : <https://id.kb.se/vocab/>
 
@@ -76,7 +80,7 @@ SELECT DISTINCT ?language ?langName {
 Denna fråga har omtolkats till "Vilka språk har svenska titlar översatts till mellan åren 2000-2010?".
 Vi kan nämligen ta reda på verkets originalspråk via `:translationOf`, däremot inget om dess originalutgivning.
 
-#### Vilka svenska skönlitterära titlar har översatts till spanska 1990?
+### Vilka svenska skönlitterära titlar har översatts till spanska 1990?
 ```sparql
 PREFIX : <https://id.kb.se/vocab/>
 
@@ -113,7 +117,7 @@ Tyvärr är det inte möjligt att få fram vilka svenska verk som översatts til
 
 Det vore även önskvärt att kunna ange _en_ term för _all_ skönlitteratur. Visserligen finns `saogf:Sk%C3%B6nlitteratur` men den har hittills för lite användning och dess relation till marc-termerna är inte heller definierad.
 
-#### Vilka serietecknare har översatts till svenska under 1980-2020?
+### Vilka serietecknare har översatts till svenska under 1980-2020?
 ```sparql
 PREFIX : <https://id.kb.se/vocab/>
 
@@ -142,7 +146,7 @@ SELECT DISTINCT ?cartoonist (CONCAT(?givenName, " ", ?familyName) as ?name) {
 **Kommentar:**  
 Serietecknare som ligger som lokala entiteter (blanknoder) under `:agent` filtreras här bort. Vill man ha med även de lokala entiteterna i resultatet tar man med fördel bort `FILTER(isIri(?cartoonist))`, dock innebär detta att samma serietecknare kan förekomma flera gånger i resultatet.
 
-#### Hur många franska barnböcker översättes till svenska under 1980-2020?
+### Hur många franska barnböcker översättes till svenska under 1980-2020?
 ```sparql
 PREFIX : <https://id.kb.se/vocab/>
 
@@ -163,7 +167,7 @@ SELECT (COUNT(DISTINCT ?book) AS ?count) {
 Här frågar vi snarare efter antalet svenska resurser som översatts _från_ franska. Det omvända kräver att verken ligger länkade under `:translationOf`, vilket inte är fallet i dagsläget.  
 Vi frågar heller inte uteslutande efter böcker. Det är inte möjligt då det saknas en generell struktur som indikerar att en resurs är specifikt en bok. Däremot är det fullt möjligt att begränsa frågan till monografier (instansen) av typen text (verket).
 
-#### Hur många böcker gavs ut på samiska utifrån aspekterna genre, målgrupp och utgivningsår?
+### Hur många böcker gavs ut på samiska utifrån aspekterna genre, målgrupp och utgivningsår?
 ```sparql
 PREFIX : <https://id.kb.se/vocab/>
 
@@ -198,7 +202,7 @@ ORDER BY ?year ?audience ?genre
 **Kommentar:**  
 Det finns ingen URI som representerar alla samiska språk, utan vi får inkludera samtliga varieteter.
 
-#### Hur många facklitterära böcker gav förlaget Natur och Kultur ut mellan åren 1920-2000?
+### Hur många facklitterära böcker gav förlaget Natur och Kultur ut mellan åren 1920-2000?
 ```sparql
 PREFIX : <https://id.kb.se/vocab/>
 
@@ -225,7 +229,7 @@ SELECT (COUNT(DISTINCT ?book) AS ?count) {
 I brist på en klass som representerar facklitteratur får vi här använda `marc:NotFictionNotFurtherSpecified` (=Ej skönlitterärt verk).
 Det vore önskvärt att kunna referera till en URI som representerar förlaget Natur & Kultur men eftersom utgivare inte är länkade får vi istället matcha lokala entiteter / blanknoder på benämning.
 
-#### Hur många böcker ges ut av egenutgivare varje år?
+### Hur många böcker ges ut av egenutgivare varje år?
 ```sparql
 PREFIX : <https://id.kb.se/vocab/>
 
@@ -239,7 +243,7 @@ SELECT ?year (COUNT(DISTINCT ?book) AS ?count) {
 ORDER BY ?year
 ```
 
-#### Hur många böcker har det getts ut inom barnlitteratur i Sverige varje år?
+### Hur många böcker har det getts ut inom barnlitteratur i Sverige varje år?
 ```sparql
 PREFIX : <https://id.kb.se/vocab/>
 
@@ -259,7 +263,7 @@ ORDER BY ?year
 **Kommentar:**  
 Vill man undanta årtal som avviker från formen "yyyy" kan man lägga till det här filtret: `FILTER(regex(?year, "^[0-9]{4}$"))`.
 
-#### Hur många böcker ges ut i Sverige totalt varje år?
+### Hur många böcker ges ut i Sverige totalt varje år?
 ```sparql
 PREFIX : <https://id.kb.se/vocab/>
 
@@ -274,7 +278,7 @@ GROUP BY ?year
 ORDER BY ?year
 ```
 
-#### Hur många böcker har digitaliserats under 2020?
+### Hur många böcker har digitaliserats under 2020?
 ```sparql
 PREFIX : <https://id.kb.se/vocab/>
 
@@ -286,7 +290,7 @@ SELECT (COUNT(DISTINCT ?digiBook) AS ?count) {
 }
 ```
 
-#### Vilka titlar digitaliserades 2019?
+### Vilka titlar digitaliserades 2019?
 ```sparql
 PREFIX : <https://id.kb.se/vocab/>
 
@@ -301,7 +305,7 @@ SELECT DISTINCT ?digi ?title {
 ORDER BY ?title
 ```
 
-#### Hur många svenska utgivare fanns det 1970?
+### Hur många svenska utgivare fanns det 1970?
 ```sparql
 PREFIX : <https://id.kb.se/vocab/>
 
@@ -318,7 +322,7 @@ Här frågar vi snarare "Vilka utgivare gav ut något i Sverige under 1970?". Ti
 
 Om utgivare var länkade skulle vi också få ett mer exakt resultat, tack vare att vi då skulle kunna garantera att antalet _unika_ utgivare räknas. Att räkna blanknoder fungerar inte eftersom vi inte kan särskilja vilka som representerar samma förlag. Istället räknar vi antalet unika benämningar, även om inte heller detta sätt garanterar ett helt exakt resultat då det kan förekomma olika benämningar på samma förlag, t.ex. "Natur & Kultur" och "N&K".
 
-#### Hur många barnböcker gavs ut på ett annat språk än svenska av svenska utgivare 2019?
+### Hur många barnböcker gavs ut på ett annat språk än svenska av svenska utgivare 2019?
 ```sparql
 PREFIX : <https://id.kb.se/vocab/>
 
@@ -336,7 +340,7 @@ SELECT (COUNT(DISTINCT ?book) AS ?count) {
 }
 ```
 
-#### Vilka titlar har getts ut om coronapandemin 2019-2020 och coronaviruset?
+### Vilka titlar har getts ut om coronapandemin 2019-2020 och coronaviruset?
 ```sparql
 PREFIX : <https://id.kb.se/vocab/>
 
@@ -355,7 +359,7 @@ SELECT DISTINCT ?instance ?title {
 }
 ```
 
-#### Hur många titlar har getts ut om coronapandemin 2019-2020 och coronaviruset?
+### Hur många titlar har getts ut om coronapandemin 2019-2020 och coronaviruset?
 ```sparql
 PREFIX : <https://id.kb.se/vocab/>
 
@@ -370,7 +374,7 @@ SELECT (COUNT(DISTINCT ?instance) AS ?count) {
 }
 ```
 
-#### Hur många tryckta monografier katalogiserades av Kungliga biblioteket 2020?
+### Hur många tryckta monografier katalogiserades av Kungliga biblioteket 2020?
 ```sparql
 PREFIX : <https://id.kb.se/vocab/>
 
@@ -388,10 +392,10 @@ SELECT ?month (COUNT(?instance) AS ?count) {
 GROUP BY ?month
 ORDER BY ?month
 ```
-**Kommentar:**
+**Kommentar:**  
 Med katalogiserades menar vi här när beståndspost skapades. Svaret visar antal per månad.
 
-#### Hur många elektroniska seriella resurser katalogiserades av Kungliga biblioteket 2018?
+### Hur många elektroniska seriella resurser katalogiserades av Kungliga biblioteket 2018?
 ```sparql
 PREFIX : <https://id.kb.se/vocab/>
 
@@ -410,7 +414,7 @@ GROUP BY ?month
 ORDER BY ?month
 ```
 
-#### Hur många monografier inom DDK 320 katalogiserades av Umeå universitetsbibliotek 2019?
+### Hur många monografier inom DDK 320 katalogiserades av Umeå universitetsbibliotek 2019?
 ```sparql
 PREFIX : <https://id.kb.se/vocab/>
 
@@ -428,7 +432,7 @@ SELECT (COUNT(DISTINCT ?instance) AS ?count) {
 }
 ```
 
-#### Hur många poster katalogiserades med Svenska ämnesordet Missionärer 2010-2019?
+### Hur många poster katalogiserades med Svenska ämnesordet Missionärer 2010-2019?
 ```sparql
 PREFIX : <https://id.kb.se/vocab/>
 
@@ -442,7 +446,7 @@ SELECT (COUNT(DISTINCT ?instance) AS ?count) {
 }
 ```
 
-#### Hur många poster finns det inom bibliografin SUEC?
+### Hur många poster finns det inom bibliografin SUEC?
 ```sparql
 PREFIX : <https://id.kb.se/vocab/>
 
@@ -452,7 +456,7 @@ SELECT (COUNT(?record) AS ?count) {
 }
 ```
 
-#### Hur många nya personbeskrivningar (auktoritetsposter) med ISNI skapades 2017-2021?
+### Hur många nya personbeskrivningar (auktoritetsposter) med ISNI skapades 2017-2021?
 ```sparql
 PREFIX : <https://id.kb.se/vocab/>
 
@@ -466,7 +470,7 @@ SELECT (COUNT(DISTINCT ?person) AS ?count) {
 }
 ```
 
-#### Hur många personbeskrivningar ändrades 2017-2021?
+### Hur många personbeskrivningar ändrades 2017-2021?
 ```sparql
 PREFIX : <https://id.kb.se/vocab/>
 
@@ -478,5 +482,76 @@ SELECT (COUNT(DISTINCT ?person) AS ?count) {
     FILTER(year(?date) >= 2017 && year(?date) <= 2021)
 }
 ```
-**Kommentar:**
+**Kommentar:**  
 För att få motsvarande resultat för andra entitetstyper än personer räcker det att ändra `:Person` till önskad typ, t.ex. `:Organization`.
+
+### Vilka SAO-termer skapades år 2024?
+```sparql
+PREFIX : <https://id.kb.se/vocab/>
+
+SELECT * WHERE {
+    ?meta :mainEntity ?topic ;
+        :created ?created .
+    ?topic :inScheme <https://id.kb.se/term/sao> .
+
+    FILTER(YEAR(?created) = 2024)
+}
+ORDER BY ASC(?created)
+```
+
+### Vilka saogf-termer ingår i termsamling Musik men saknar information om DDK i closeMatch?
+```sparql
+PREFIX : <https://id.kb.se/vocab/>
+
+SELECT * WHERE {
+    ?sub a :GenreForm ; :inCollection <https://id.kb.se/term/musik> .
+
+    FILTER NOT EXISTS {
+        ?sub :closeMatch [a :ClassificationDdc]
+    }
+}
+```
+
+### Hur många termer i SAO, i delmängd Allmänt ämnesord, saknar relationer (bredare/smalare/relaterad)?
+```sparql
+PREFIX : <https://id.kb.se/vocab/>
+
+SELECT ?topic WHERE {
+    [] :mainEntity ?topic .
+        ?topic a :Topic ;
+        :inScheme <https://id.kb.se/term/sao> .
+
+    FILTER NOT EXISTS { ?topic :broader [] }
+    FILTER NOT EXISTS { [] :broader ?topic }
+    FILTER NOT EXISTS { ?topic :related [] }
+}
+ORDER BY ?topic
+```
+
+### Vilka personer har en ISNI-identifikator som _inte_ börjar med "00000"?
+```sparql
+PREFIX : <https://id.kb.se/vocab/>
+
+SELECT * WHERE {
+    GRAPH ?g {
+        ?sub a :Person;
+            :identifiedBy [a :ISNI; :value ?isni]
+
+        FILTER(!STRSTARTS(?isni, "00000"))
+    }
+}
+```
+**Kommentar**:  
+Kan hitta sådana som till synes ser ut att vara korrekta, men som egentligen är trasiga (t.ex. `\n0000000115796660`).
+
+### Hur många katalogposter skapade den elektroniska plikten under 2023?
+```sparql
+PREFIX : <https://id.kb.se/vocab/>
+
+SELECT (COUNT(*) as ?count) {
+    ?record :bibliography <https://libris.kb.se/library/EPLK>;
+    :created ?created .
+
+    FILTER(year(?created) = 2023)
+}
+```
