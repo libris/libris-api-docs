@@ -8,7 +8,10 @@ Dokumentationen ligger under `docs/` och är i Markdown-format.
 
 För att generera dokumentationssajten används [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/), ett slags framework ovanpå [MkDocs](https://www.mkdocs.org/).
 
-Se https://squidfunk.github.io/mkdocs-material/reference/ för saker som kan användas i dokumenten.
+Se:
+
+* https://squidfunk.github.io/mkdocs-material/setup/ för övergripande inställningar
+* https://squidfunk.github.io/mkdocs-material/reference/ för saker som kan användas i dokumenten
 
 ## Flerspråkighet
 
