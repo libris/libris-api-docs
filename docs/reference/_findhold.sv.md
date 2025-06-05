@@ -11,7 +11,7 @@ bibliografiska posten.
 
 ## Parametrar
 
-* `id` - Den bibliografiska postens ID (t.ex. https://libris-qa.kb.se/s93ns5h436dxqsh eller http://libris.kb.se/bib/1234)
+* `id` - Den bibliografiska postens ID (t.ex. https://libris.kb.se/s93ns5h436dxqsh eller http://libris.kb.se/bib/1234)
 * `library` - Sigel-ID (t.ex. https://libris.kb.se/library/SEK)
 
 ## Exempel

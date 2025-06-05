@@ -5,11 +5,11 @@ title: Ta bort en post
     Detta anrop kräver [autentisering](../howto/auth.md).
 
 ```
-DELETE https://libris-qa.kb.se/<post-id>
+DELETE https://libris.kb.se/<id>
 ```
 
 Du kan radera en post genom att skicka ett `DELETE`-anrop till postens URI
-(t.ex. `https://libris-qa.kb.se/s93ns5h436dxqsh`).
+(t.ex. `https://libris.kb.se/s93ns5h436dxqsh`).
 
 Följande headers måste vara satta:
 
@@ -31,5 +31,5 @@ anrop till postens URI kommer resultera i ett `410 Gone`-svar.
 curl -XDELETE
     -H 'Authorization: Bearer <token>' \
     -H 'XL-Active-Sigel: <sigel>' \
-    https://libris-qa.kb.se/<id>
+    https://libris.kb.se/<id>
 ```

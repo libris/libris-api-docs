@@ -78,7 +78,7 @@ Med content negotiation plus parametrar:
 ```bash title="Shell"
 curl -s -H'Accept: text/turtle' "https://libris.kb.se/fxql7jqr38b1dkf?profile=https://id.kb.se/sys/context/target/sdo-w3c"
 
-curl -s -H'Accept: text/turtle' "https://id-qa.kb.se/relator/contributor?profile=https://id.kb.se/sys/context/target/bibo-w3c"
+curl -s -H'Accept: text/turtle' "https://id.kb.se/relator/contributor?profile=https://id.kb.se/sys/context/target/bibo-w3c"
 
 curl -s -H'Accept: text/turtle' "https://libris.kb.se/fxql7jqr38b1dkf?profile=https://id.kb.se/sys/context/target/bibo-w3c"
 ```

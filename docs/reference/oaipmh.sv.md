@@ -25,8 +25,8 @@ Delmängden `set=hold:S` utgörs av alla beståndsposter med sigel S.
 
 OAI-PMH använder sig av parametern "metadataPrefix" för att välja export-format. Libris OAI-PMH implementation stödjer huvudsakligen fyra format, vilka är `marcxml`, `rdfxml`, `jsonld` och `ttl`. Eftersom OAI-PMH specifikationen kräver detta så erbjuds också en extremt enkel form av `oai_dc` (Dublin Core), men i praktiken saknar poster i `oai_dc` all egentlig metadata.
 
-För att täcka Libris behov utan att bryta mot OAI-PMH specifikationen så erbjuds ytterligare tre "former" av dessa format (strikt taget engligt specifikationen är dessa fristående format i sig).
-Dessa är:
+För att täcka Libris behov utan att bryta mot OAI-PMH specifikationen så erbjuds ytterligare tre "former" av dessa format (strikt taget engligt specifikationen är dessa fristående format i sig). Dessa är:
+
 * `[huvudformat]_expanded`
 * `[huvudformat]_includehold`
 * `[huvudformat]_includehold_expanded`
@@ -39,9 +39,9 @@ T ex: Om `metadataPrefix=marcxml_expanded` används för en bibliografisk post s
 `[huvudformat]_includehold_expanded` kombinerar `[huvudformat]_includehold` och `[huvudformat]_expanded`
 
 ## Librisspecifika parametrar
-Libris implementation av OAI-PMH erbjuder en extra parameter som inte ingår i OAI-PMH specifikationen och som kan användas tillsammans med verben `GetRecord` och `ListRecords`. Parametern heter `x-withDeletedData` och om den sätts till `true` så inkluderar svaret metadata även för poster som markerats som borttagna. Detta strider mot OAI-PMH specifikationen som förbjuder både extra parametrar och att metadata för borttagna poster skickas med. Trots detta har valet gjorts att använda den här parametern för att möjliggöra viss nödvändig libris-funktionalitet.
+Libris implementation av OAI-PMH erbjuder en extra parameter som inte ingår i OAI-PMH specifikationen och som kan användas tillsammans med verben `GetRecord` och `ListRecords`. Parametern heter `x-withDeletedData` och om den sätts till `true` så inkluderar svaret metadata även för poster som markerats som borttagna. Detta strider mot OAI-PMH specifikationen som förbjuder både extra parametrar och att metadata för borttagna poster skickas med. Trots detta har valet gjorts att använda den här parametern för att möjliggöra viss nödvändig Libris-funktionalitet.
 
-#### Exempel
+## Exempel
 För att hämta alla bibliografiska poster (med tillhörande beståndsposter), för vilka det finns beståndsposter med sigel `S` och som uppdaterats mellan den 13 och klockan 12 den 14 februari:
 
 ```bash title="Shell"

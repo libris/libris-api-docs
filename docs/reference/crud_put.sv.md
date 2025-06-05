@@ -10,7 +10,7 @@ PUT https://libris.kb.se/<post-id>
 ```
 
 En befintlig post kan uppdateras genom att skicka ett `PUT`-anrop till
-postens URI (t.ex. `https://libris-qa.kb.se/s93ns5h436dxqsh`).
+postens URI (t.ex. `https://libris.kb.se/s93ns5h436dxqsh`).
 
 Förfrågans body ska innehålla posten i JSON-LD-format.
 
@@ -43,5 +43,5 @@ curl -XPUT -H 'Content-Type: application/ld+json' \
     -H 'Authorization: Bearer <token>' \
     -H 'XL-Active-Sigel: <sigel>' \
     -d@min_uppdaterade_post.jsonld \
-    https://libris-qa.kb.se/<id>
+    https://libris.kb.se/<id>
 ```

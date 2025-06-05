@@ -14,7 +14,7 @@ Förfrågan måste se ut på följande vis:
 * `Content-Type` måste vara `application/ld+json`.
 * `Accept` måste vara `application/x-marc-json`.
 
-#### Exempel
+## Exempel
 Förfrågan:
 
 ```bash title="Shell"

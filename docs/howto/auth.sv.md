@@ -25,7 +25,7 @@ För att använda Libris skriv-API:er krävs att man innehar ett API-konto till 
 * Alla typer av mängdändringar av data i Libris (inklusive skapande av nya poster och borttagande av poster) via API:er får endast utföras i samråd eller efter överenskommelse med KB och ska köras i testmiljö före implementation.
 * Mängdändringar av poster i Libris får endast utföras på det egna beståndet om inte annat är överenskommet med Kungliga biblioteket. En systemleverantör, medieleverantör eller leverantör av katalogiseringstjänst kan utföra sådana mängdändringar på uppdrag av ett Librisanslutet biblioteket.
 
-### Hämta ut en bearer-token
+## Hämta ut en bearer-token
 
 När man har fått ett klientid och klienthemlighet ifrån kundtjänst gör man följande för att hämta
 en bearer-token:

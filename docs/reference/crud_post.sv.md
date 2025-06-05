@@ -45,5 +45,5 @@ curl -XPOST -H 'Content-Type: application/ld+json' \
     -H 'Authorization: Bearer <token>' \
     -H 'XL-Active-Sigel: <sigel>' \
     -d@min_post.jsonld \
-    https://libris-qa.kb.se/data
+    https://libris.kb.se/data
 ```

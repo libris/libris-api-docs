@@ -5,7 +5,7 @@ title: Libris sök-API (/find)
 Detta anrop låter dig söka i Libris.
 
 ```
-GET https://libris.kb.se/_find
+GET https://libris.kb.se/find
 ```
 
 ## Parametrar
