@@ -1,5 +1,6 @@
 # Ex: https://github.com/ultrabug/mkdocs-static-i18n/blob/main/mkdocs.yml
 site_name: Libris API-dokumentation
+site_url: https://libris.kb.se/api/docs/
 repo_url: https://github.com/libris/libris-api-docs
 repo_name: libris-api-docs
 nav:
