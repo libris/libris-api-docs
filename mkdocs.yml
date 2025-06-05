@@ -35,7 +35,7 @@ nav:
       - reference/marc21.md
       - reference/oaipmh.md
       - reference/sru.md
-    - Biblioteksdatabasen: reference/bibdb.md
+    - reference/bibdb.md
   - Förklaringar:
     - explanation/rdf.md
     - explanation/libris.md
@@ -87,9 +87,13 @@ plugins:
           site_name: "Libris API documentation"
           nav_translations:
             Hem: Home
-            Handledningar (tutorials): Tutorials
-            Instruktionsguider (how-to): How-to
+            Handledningar: Tutorials
+            Instruktionsguider: How-to
             Referens: Reference
+            Förklaringar: Explanations
+            Jobba med Libris-poster: Work with Libris records
+            "Sök-API:er": "Search APIs"
+            "Export-API:er": "Export APIs"
   - git-revision-date-localized:
       type: iso_datetime
 extra_css:
