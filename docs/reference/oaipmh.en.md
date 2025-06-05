@@ -1,44 +1,49 @@
 ---
 title: OAI-PMH
 ---
-The Libris OAI-PMH server implementation conforms to the official OAI-PMH specifikationen which can be accessed [here](https://www.openarchives.org/OAI/openarchivesprotocol.html).
-
-The purpose of this document is to provide Libris-specific information on to how to use OAI-PMH to harvest metadata from Libris.
-
-The OAI-PMH endpoint is available at https://libris.kb.se/api/oaipmh/
-
-## The Set-parameter:
-
-The OAI-PMH specification describes harvesting of sets. Libris uses sets for certain specific purposes.
-
-Libris separates metadata into three primary sets, which are: `auth`, `bib`, och `hold`. These represent authority records, bibliographic records och holding records respectively.
-
-In addition to the primary sets, there are subsets for bibliographic and holding records relating to specific "sigel" (library codes).
-For example `set=bib:S` which contains all bibliographic records for which there exists a holding record with the sigel S.
-The subset `set=hold:S` contains all holding record with the sigel S.
-
-## The MetadataPrefix-parameter:
-
-OAI-PMH uses the "metadataPrefix" parameter to select a format in which to deliver data. The Libris OAI-PMH implementation supports three primary formats in addition to the required `oai_dc` (Dublin Core) format. These are `marcxml`, `rdfxml` and `jsonld`.
-
-To cover the internal needs of Libris, each of the primary formats is also available in three different derivative formats. Strictly speaking these are formats in their own right, but in practice they are used as a mechanism for passing extra configuration information to the server. The derivative formats are:
-* `[primaryFormat]_expanded`
-* `[primaryFormat]_includehold`
-* `[primaryFormat]_includehold_expanded`
-
-`[primaryFormat]_expanded` for a record `A` means that information from records `B,C ..` to which `A` have links is also (where possible) added to `A`.
-For example if `metadataPrefix=marcxml_expanded` is used for a bilbiographic record, the result is that relevant authority information is added to the bibliographic record.
-
-`[primaryFormat]_includehold` only differs from  `[primaryFormat]` för bibliographic records. Each record is then delivered with a list of holding records attached to the bibliographic record in question (the list of holding records sits in the <about> part of the response, for each record).
-
-`[primaryFormat]_includehold_expanded` combines `[huvudformat]_includehold` and `[huvudformat]_expanded`
-
-## Libris specific parameters:
-The Libris OAI-PMH implementation allows one extra parameter which is not a part of the OAI-PMH specification. This parameter is called `x-withDeletedData` and may be used with the verbs `GetRecord` and `ListRecords`. If `x-withDeletedData` is set to `true` this results in data being delivered for records even if those records are marked deleted. This violates the OAI-PMH specification, which explicitly forbids both extra parameters and delivering deleted data. The parameter has been included anyway, because it is necessary for certain Libris functionality.
-
-#### Example
-To harvest all bibliographic records (with a list of holding records attached) for which there exists holding records with the sigel `S` and that have been modified between 2018-02-13 and 12:00 2018-02-14 (UTC):
-
 ```
-$ curl "https://libris.kb.se/api/oaipmh/?verb=ListRecords&metadataPrefix=marcxml_includehold_expanded&from=2018-02-13&until=2018-02-14T12:00:00Z&x-withDeletedData=true&set=bib:S"
+GET https://libris.kb.se/api/oaipmh
+```
+
+The Libris OAI-PMH server follows the [official OAI-PMH specification](https://www.openarchives.org/OAI/openarchivesprotocol.html).
+
+The purpose of this document is to provide Libris-specific information on how OAI-PMH can be used to retrieve Libris metadata.
+
+The address for the OAI-PMH interface is https://libris.kb.se/api/oaipmh/
+
+## The Set parameter (subsets)
+
+The OAI-PMH specification describes how harvesting of subsets works in general, but in Libris these are used for certain specific purposes.
+
+The Libris OAI-PMH implementation uses three main subsets for its metadata. These are `auth`, `bib`, and `hold`, which represent authority records, bibliographic records, and holdings records. There are also a couple of smaller subsets, namely `sao` (Swedish subject headings) and `nb` (the National Bibliography).
+
+In addition to the basic subsets, there are sub-subsets for bibliographic and holdings records for specific sigels.
+For example, the subset `set=bib:S` includes all bibliographic records for which there is a holdings record with sigel S.
+The subset `set=hold:S` consists of all holdings records with sigel S.
+
+## The MetadataPrefix parameter (format)
+
+OAI-PMH uses the parameter "metadataPrefix" to select the export format. The Libris OAI-PMH implementation mainly supports four formats: `marcxml`, `rdfxml`, `jsonld`, and `ttl`. Because the OAI-PMH specification requires it, a very simple form of `oai_dc` (Dublin Core) is also offered, but in practice, records in `oai_dc` lack any real metadata.
+
+To meet Libris needs without violating the OAI-PMH specification, three additional "forms" of these formats are offered (strictly speaking, according to the specification, these are independent formats themselves). These are:
+
+* `[mainformat]_expanded`
+* `[mainformat]_includehold`
+* `[mainformat]_includehold_expanded`
+
+`[mainformat]_expanded` for a record `A` means that records `B,C ..` that `A` links to are also, as far as possible, included in `A`.
+For example: If `metadataPrefix=marcxml_expanded` is used for a bibliographic record, this means that relevant authority information is included in the record.
+
+`[mainformat]_includehold` differs from `[mainformat]` only for bibliographic records. These records are then followed by a list of holdings records for the bibliographic record in question (the list is in the `<about>` part of the response for the record).
+
+`[mainformat]_includehold_expanded` combines `[mainformat]_includehold` and `[mainformat]_expanded`.
+
+## Libris-specific parameters
+Libris' implementation of OAI-PMH offers an extra parameter that is not included in the OAI-PMH specification and can be used with the verbs `GetRecord` and `ListRecords`. The parameter is called `x-withDeletedData` and if set to `true`, the response will include metadata for records that have been marked as deleted. This is contrary to the OAI-PMH specification, which prohibits both extra parameters and the inclusion of metadata for deleted records. Nevertheless, this choice has been made to enable certain necessary Libris functionality.
+
+## Example
+To retrieve all bibliographic records (with associated holdings records), for which there are holdings records with sigel `S` and which have been updated between February 13 and 12:00 on February 14:
+
+```bash title="Shell"
+curl "https://libris.kb.se/api/oaipmh/?verb=ListRecords&metadataPrefix=marcxml_includehold_expanded&from=2018-02-13&until=2018-02-14T12:00:00Z&x-withDeletedData=true&set=bib:S"
 ```
