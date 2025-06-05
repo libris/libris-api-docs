@@ -118,14 +118,16 @@ code {
   --md-primary-fg-color--light:var(--color-primary-300);
   --md-primary-fg-color--dark:var(--color-primary-900);
   --md-primary-bg-color:var(--color-page);
-  --md-primary-bg-color--light:#ffffffb3
+  --md-primary-bg-color--light:#ffffffb3;
+
+  --md-typeset-a-color:var(--color-link);
 }
 
 [data-md-color-accent=libris] {
   --md-accent-fg-color:var(--color-accent-600);
   --md-accent-fg-color--transparent:#00c7531a;
   --md-accent-bg-color:var(--color-page);
-  --md-accent-bg-color--light:#ffffffb3
+  --md-accent-bg-color--light:#ffffffb3;
 }
 
 :root {
