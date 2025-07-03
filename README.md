@@ -25,16 +25,12 @@ Alla sidor under `docs/` kompileras automatiskt till HTML, men endast de som är
 
 ## Installera, bygg, testa
 
+Se till att ha https://github.com/astral-sh/uv installerat.
+
 ```bash
 # Skapa en venv och aktivera
-python3 -m venv venv
-source venv/bin/activate
-# Installera beroenden
-pip3 install -r requirements.txt
-
-# Bygg sajten
-mkdocs build # output hamnar i site/
+uv run mkdocs build # output hamnar i site/
 
 # Kör inbyggd server, sajten laddas om automatiskt vid ändringar
-mkdocs serve
+uv run mkdocs serve
 ```
