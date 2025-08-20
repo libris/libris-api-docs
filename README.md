@@ -19,6 +19,8 @@ Se:
 
 När du skapar en ny sida, skriv den på svenska först. Lägg den på lämpligt ställe under `docs/` och döp filen till `<nånting>.sv.md`. Om du gör en översättning ska den heta `<nånting>.en.md`.
 
+Vid ändringar, se till att ändra både den svenska och den engelska versionen samtidigt.
+
 ## Navigation
 
 Alla sidor under `docs/` kompileras automatiskt till HTML, men endast de som är explicit listade i `mkdocs.yml` hamnar i navigationsmenyn.

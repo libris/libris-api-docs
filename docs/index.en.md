@@ -5,7 +5,7 @@ Libris is Sweden's national library catalogue. Libris is a collaboration between
 
 Libris' technical platform is called Libris XL. The Libris data store is based on open, linked data in the BIBFRAME/RDF format and the KBV (Kungliga bibliotekets basvokabulär) vocabulary.
 
-With Libris APIs you can -- for example -- integrate Libris data to and from your organization's local systems. You can use the APIs to search, write to, and retrieve data from Libris. The APIs work via HTTP.
+With Libris APIs you can — for example — integrate Libris data to and from your organization's local systems. You can use the APIs to search, write to, and retrieve data from Libris. The APIs work via HTTP.
 
 ## Terms of use for public Libris APIs
 

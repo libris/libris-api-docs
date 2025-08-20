@@ -1,5 +1,5 @@
 ---
-title: TODO Libriskatalogen
+title: Libriskatalogen
 ---
 Libris innehåller bibliografiska data över material som finns i svenska bibliotek som deltar i Librissamarbetet (92% av alla bibliotek i Sverige i 2025). 
 
@@ -7,4 +7,4 @@ En stor del av data i Libris kommer in via automatiserade flöden från ett anta
 
 Data i Libris består även av manuellt katalogiserade eller från andra kataloger och databaser importerade och uppdaterade poster.
 
-Något mer från denna sida: https://www.kb.se/samverkan-och-utveckling/libris/katalogisering-i-libris/introduktion-till-libris.html
+Se [Introduktion till Libris](https://www.kb.se/samverkan-och-utveckling/libris/katalogisering-i-libris/introduktion-till-libris.html) för mer information.

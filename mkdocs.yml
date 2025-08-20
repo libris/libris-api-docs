@@ -5,15 +5,15 @@ repo_url: https://github.com/libris/libris-api-docs
 repo_name: libris-api-docs
 nav:
   - Start: index.md
-  - Handledningar:
-    - tutorial/search.md
-    - tutorial/sparql.md
+  #- Handledningar:
+  #  - tutorial/search.md
+  #  - tutorial/sparql.md
   - Instruktionsguider:
     #- howto/index.md
     - howto/auth.md
-    - howto/xsearch_migration.md
+    #- howto/xsearch_migration.md
     - howto/sparql_examples.md
-    - howto/emm.md
+    #- howto/emm.md
   - Referens:
     - reference/libris_environments.md
     #- REST-API: reference/restapi.md

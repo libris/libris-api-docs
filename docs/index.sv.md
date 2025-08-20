@@ -5,7 +5,7 @@ Libris är Sveriges nationella bibliotekskatalog. Libris är ett samarbete mella
 
 Libris tekniska plattform kallas för Libris XL. Libris datalager är baserad på öppna, länkade data i formatet BIBFRAME/RDF och vokabulär KBV (Kungliga bibliotekets basvokabulär).
 
-Med Libris API:er kan du -- till exempel -- integrera med Librisdata från och till din organisations lokala system. Du kan använda API:er för att både söka i, skriva in till och hämta data från Libris. API:erna fungerar via HTTP.
+Med Libris API:er kan du — till exempel — integrera med Librisdata från och till din organisations lokala system. Du kan använda API:er för att både söka i, skriva in till och hämta data från Libris. API:erna fungerar via HTTP.
 
 ## Användarvillkor för Libris publika API:er
 
