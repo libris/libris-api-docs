@@ -1,9 +1,9 @@
 ---
 title: Libris API-dokumentation
 ---
-Libris är Sveriges nationella bibliotekskatalog. Libris är ett samarbete mellan mer än 600 svenska bibliotek, som gemensamt bygger upp innehållet. Libris består av många olika system, bland annat av söktjänst, fjärrlån och katalogiseringsverktyg.
+Libris är Sveriges nationella bibliotekskatalog. Libris är ett samarbete mellan mer än 600 svenska bibliotek, som gemensamt bygger upp innehållet. Libris består av många olika system, bland annat söktjänst, fjärrlån och katalogiseringsverktyg.
 
-Libris tekniska plattform kallas för Libris XL. Libris datalager är baserad på öppna, länkade data i formatet BIBFRAME/RDF och vokabulär KBV (Kungliga bibliotekets basvokabulär).
+Libris tekniska plattform kallas för Libris XL. Libris datalager är baserad på öppna, länkade data ([RDF](https://www.w3.org/TR/rdf11-primer/)) i modellen [BIBFRAME](https://www.loc.gov/bibframe/docs/bibframe2-model.html) och vokabuläret [KBV](https://id.kb.se/vocab/) (Kungliga bibliotekets basvokabulär).
 
 Med Libris API:er kan du — till exempel — integrera med Librisdata från och till din organisations lokala system. Du kan använda API:er för att både söka i, skriva in till och hämta data från Libris. API:erna fungerar via HTTP.
 
