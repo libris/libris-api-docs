@@ -14,7 +14,7 @@ För att skriva data till Libris finns två olika nivåer av rättigheter:
 * Nivå 1 för hantering av enbart beståndposter.
 * Nivå 2 för hantering av både bibliografiska poster och beståndsposter.
 
-Klienten är knuten till en eller flera sigel, och det är enbart beståndsposter tillhörande den eller dessa sigel som kan skapas, ändras eller tas bort i exemplen nedan..
+Klienten är knuten till en eller flera sigel, och det är enbart beståndsposter tillhörande den eller dessa sigel som kan skapas, ändras eller tas bort i exemplen nedan.
 
 ## Regelverk
 
