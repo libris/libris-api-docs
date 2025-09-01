@@ -25,7 +25,7 @@ Delmängden `set=hold:S` utgörs av alla beståndsposter med sigel S.
 
 OAI-PMH använder sig av parametern "metadataPrefix" för att välja export-format. Libris OAI-PMH implementation stödjer huvudsakligen fyra format, vilka är `marcxml`, `rdfxml`, `jsonld` och `ttl`. Eftersom OAI-PMH specifikationen kräver detta så erbjuds också en extremt enkel form av `oai_dc` (Dublin Core), men i praktiken saknar poster i `oai_dc` all egentlig metadata.
 
-För att täcka Libris behov utan att bryta mot OAI-PMH specifikationen så erbjuds ytterligare tre "former" av dessa format (strikt taget engligt specifikationen är dessa fristående format i sig). Dessa är:
+För att täcka Libris behov utan att bryta mot OAI-PMH specifikationen så erbjuds ytterligare tre "former" av dessa format (strikt taget enligt specifikationen är dessa fristående format i sig). Dessa är:
 
 * `[huvudformat]_expanded`
 * `[huvudformat]_includehold`
