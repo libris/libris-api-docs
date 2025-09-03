@@ -10,12 +10,13 @@ GET https://libris.kb.se/find
 
 ## Parametrar
 
-* `q` - Sökfrågan.
+* `q` - Sökfrågan.https://github.com/libris/libris-api-docs
 * `o` - Hitta endast poster som länkar till detta ID.
 * `_limit` - Max antal träffar att inkludera i resultatet, används för
   paginering. Standardvärdet är 200.
 * `_offset` - Antal träffar att hoppa över i resultatet, används för
   paginering. Standardvärdet är 0.
+* `_sort` - Egenskap att sortera efter, t.ex. `publication.year` för utgivningsår eller `meta.modified` för senast ändrad (äldst först). Använd `-` som prefix för att vända på ordningen; `sort=-publication.year` sorterar alltså efter utgivningsår med nyast först. Om `_sort` inte anges sorteras posterna efter relevans.
 
 Standardoperatorn är `+` (`OCH`), vilket innebär att en sökning på `tove jansson` är
 samma sak som en sökning på `tove +jansson`. `-` exkluderar söktermer, `|`
