@@ -2,7 +2,7 @@
 
 OBS! WIP EXPERIMENTAL osv etc.
 
-Detta repo innehåller dokumentationen för Libris olika API:er.
+Detta repo innehåller dokumentationen för Libris olika API:er. Färdigbyggd dokumentationssajt finns på https://libris.kb.se/api/docs/.
 
 Dokumentationen ligger under `docs/` och är i Markdown-format.
 
