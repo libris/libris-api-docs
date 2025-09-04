@@ -21,6 +21,7 @@ Alla parametrar är valfria och kan utelämnas. Se [ordlistan](glossary.md) för
     * Standardvärdet är `false` för `Content-Type: application/ld+json`. 
     * Standardvärdet är `true` för  `Content-Type: application/json`.
 * `lens` - `chip`, `card` eller `none`. Standardvärdet är `none`. Om `lens` är `chip` eller `card` blir `framed` alltid `true`.
+* `computedLabel` - `sv` eller `en`. Ej satt som standard (dvs: om parametern utelämnas kommer `computedLabel`-etiketter inte att visas). Kräver att `framed` är satt till `true`.
 
 ## Exempel
 Förfrågan:
@@ -42,7 +43,7 @@ Svar:
 Förfrågan:
 
 ```bash title="Shell"
-$ curl -XGET -H "Accept: application/ld+json" https://libris.kb.se/s93ns5h436dxqsh?embellished=false&lens=chip
+$ curl -XGET -H "Accept: application/ld+json" "https://libris.kb.se/s93ns5h436dxqsh?embellished=false&lens=chip"
 ```
 
 Svar:

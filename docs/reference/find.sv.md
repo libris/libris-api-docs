@@ -16,7 +16,8 @@ GET https://libris.kb.se/find
   paginering. Standardvärdet är 200.
 * `_offset` - Antal träffar att hoppa över i resultatet, används för
   paginering. Standardvärdet är 0.
-* `_sort` - Egenskap att sortera efter, t.ex. `publication.year` för utgivningsår eller `meta.modified` för senast ändrad (äldst först). Använd `-` som prefix för att vända på ordningen; `sort=-publication.year` sorterar alltså efter utgivningsår med nyast först. Om `_sort` inte anges sorteras posterna efter relevans.
+* `_sort` - Egenskap att sortera efter, t.ex. `publication.year` för utgivningsår eller `meta.modified` för senast ändrad (äldst först). Använd `-` som prefix för att vända på ordningen; `_sort=-publication.year` sorterar alltså efter utgivningsår med nyast först. Om `_sort` inte anges sorteras posterna efter relevans.
+* `computedLabel` - `sv` eller `en`. Ej satt som standard (dvs: om parametern utelämnas kommer `computedLabel`-etiketter inte att visas). Se [ordlistan](glossary.md) för vad `computedLabel` innebär.
 
 Standardoperatorn är `+` (`OCH`), vilket innebär att en sökning på `tove jansson` är
 samma sak som en sökning på `tove +jansson`. `-` exkluderar söktermer, `|`

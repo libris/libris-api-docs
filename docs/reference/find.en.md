@@ -14,6 +14,8 @@ GET https://libris.kb.se/find
 * `o` - Find only records that link to this ID.
 * `_limit` - Max number of results to include in the result, used for pagination. Default is 200.
 * `_offset` - Number of results to skip in the result, used for pagination. Default is 0.
+* `_sort` - Property to sort by, e.g. `publication.year` for publication year or `meta.modified` for last modified (oldest first). Use `-` as a prefix to reverse the order; `_sort=-publication.year` sorts by publication year with newest first. If `_sort` is not specified, the results are ordered by relevance.
+* `computedLabel` - `sv` or `en`. Not set by default, so if it is not specified, `computedLabel` labels will not be shown. See the [glossary](glossary.md) for what `computedLabel` means.
 
 The default operator is `+` (`AND`), which means a search for `tove jansson` is the same as a search for `tove +jansson`. `-` excludes search terms, `|` means `OR`, `*` is used for prefix searches, `""` matches the whole phrase, and `()` is used to affect operator precedence.
 

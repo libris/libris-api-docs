@@ -10,12 +10,114 @@ The APIs documented here are not versioned and may change in the future.
 
 Some terms that appear in the documentation:
 
+### embellished
 `embellished` is a term that describes that a record is delivered not only with its own data, but also with relevant data that the record links to. The boundaries for exactly which data is included in a certain type of record, and which is broken out to be separate (and linked to), vary over time. Generally, more and more data is being broken out, as this makes the data reusable for multiple records. It is often good to request records as `embellished` so that you are not affected by these shifting boundaries.
 
+For example, a language property in a record can look like this with `embellished=false`:
+
+```json
+"language": [
+  {
+    "@id": "https://id.kb.se/language/swe"
+  }
+]
+```
+
+With `embellished=true`:
+
+```json
+"language": [
+  {
+    "@id": "https://id.kb.se/language/swe",
+    "code": "swe",
+    "@type": "Language",
+    "sameAs": [
+      {
+        "@id": "https://id.kb.se/i18n/lang/sv"
+      }
+    ],
+    "langTag": "sv",
+    "prefLabelByLang": {
+      "de": "Schwedisch",
+      "en": "Swedish",
+      "fr": "suédois",
+      "sv": "Svenska"
+    },
+    ...
+  }
+```
+
+### framed
 `framed` is a term that describes that the extra data that comes with a record due to linking should be inserted at the places where the data is used in the JSON-LD structure. If the data is not `framed`, it is instead delivered as a list of entities.
 
+### lens
 `lens` is a term that describes a mechanism for filtering out everything except the most important information in a record. Exactly what is filtered out depends on the type of record/entity you request. There are currently three values for `lens` to choose from:
 
 * `chip` is the most filtered variant. If used, often the only thing left is, for example, the entity's name (if such exists)
 * `card` is the intermediate level. Here, everything included in the `chip` level is included, plus some additional information. This can be, for example, variant names or identifiers.
-* `none` means that no data is filtered out. 
+* `none` means that no data is filtered out.
+
+### computedLabel
+`computedLabel` can be set to `sv` or `en`. If set, the returned records are enriched with pre-calculated labels containing values from multiple properties.
+
+With `computedLabel`:
+
+```json
+"agent": {
+  "@id": "https://libris.kb.se/wt79bh6f2j46dtr#it",
+  "@type": "Person",
+  "lifeSpan": "1914-2001",
+  "givenName": "Tove",
+  "familyName": "Jansson",
+}
+```
+
+With `computedLabel=sv`:
+
+```json
+"agent": {
+  "@id": "https://libris.kb.se/wt79bh6f2j46dtr#it",
+  "@type": "Person",
+  "lifeSpan": "1914-2001",
+  "givenName": "Tove",
+  "familyName": "Jansson",
+  "computedLabel": "Jansson, Tove, 1914-2001"
+}
+```
+
+With `computedLabel`:
+
+```json
+"hasTitle": [
+  {
+    "@type": "Title",
+    "subtitleByLang": {
+      "ja": "山藤宗山作品集.",
+      "ja-Latn-t-ja": "Yamafuji Sōzan sakuhinshū."
+    },
+    "mainTitleByLang": {
+      "ja": "茶花のいれ方",
+      "ja-Latn-t-ja": "Chabana no irekata"
+    }
+  }
+]
+```
+
+With `computedLabel=sv`:
+
+```json
+"hasTitle": [
+  {
+    "@type": "Title",
+    "subtitleByLang": {
+      "ja": "山藤宗山作品集.",
+      "ja-Latn-t-ja": "Yamafuji Sōzan sakuhinshū."
+    },
+    "mainTitleByLang": {
+      "ja": "茶花のいれ方",
+      "ja-Latn-t-ja": "Chabana no irekata"
+    },
+    "computedLabel": "茶花のいれ方 : 山藤宗山作品集. ’Chabana no irekata : Yamafuji Sōzan sakuhinshū.’"
+  }
+]
+```

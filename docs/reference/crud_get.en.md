@@ -18,6 +18,7 @@ All parameters are optional and can be omitted. See the [glossary](glossary.md) 
     * Default is `false` for `Content-Type: application/ld+json`.
     * Default is `true` for `Content-Type: application/json`.
 * `lens` - `chip`, `card` or `none`. Default is `none`. If `lens` is `chip` or `card`, `framed` is always `true`.
+* `computedLabel` - `sv` or `en`. Not set by default, so if it is not specified, `computedLabel` labels will not be shown. Requires that `framed` is set to `true`.
 
 ## Examples
 Request:
@@ -40,7 +41,7 @@ Response:
 Request:
 
 ```bash title="Shell"
-$ curl -XGET -H "Accept: application/ld+json" https://libris.kb.se/s93ns5h436dxqsh?embellished=false&lens=chip
+$ curl -XGET -H "Accept: application/ld+json" "https://libris.kb.se/s93ns5h436dxqsh?embellished=false&lens=chip"
 ```
 
 Response:
