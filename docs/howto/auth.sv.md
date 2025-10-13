@@ -27,7 +27,7 @@ För att använda Libris skriv-API:er krävs att man innehar ett API-konto till 
 
 ## Hämta ut en bearer-token
 
-När man har fått ett klientid och klienthemlighet ifrån kundtjänst gör man följande för att hämta
+När man har fått ett klientid och klienthemlighet ifrån kundservice gör man följande för att hämta
 en bearer-token:
 
 ```bash title="Shell"

@@ -6,7 +6,7 @@ title: Bibliografisk post i MARCXML med bestånds- och auktoritetsinformation
 GET https://libris.kb.se/_compilemarc
 ```
 
-Detta anrop låter dig ladda ner en komplett bibliografisk post med bestånds- och auktoritetsinformation i MARC21 XML-format. Om den kompletta posten ska innehålla beståndsinformation så måste en exportprofil först ha registrerats för ditt sigel-ID. Kontakta kundtjänst i fall du behöver registrera en sådan profil.
+Detta anrop låter dig ladda ner en komplett bibliografisk post med bestånds- och auktoritetsinformation i MARC21 XML-format. Om den kompletta posten ska innehålla beståndsinformation så måste en exportprofil först ha registrerats för ditt sigel-ID. Kontakta kundservice i fall du behöver registrera en sådan profil.
 
 ## Parametrar
 
