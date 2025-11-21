@@ -72,6 +72,13 @@ Gamla verkstyperna uttrycks med contentType (RDA-termlista) eller genreForm (SAO
   
 </details>
 
+??? note "Mappningen mellan gamla verktyperna"
+    
+    | gamla verktyper | contentType/genreForm |
+    | :------------- | -------------: |
+    | ManuscriptText | https://id.kb.se/term/saogf/Handskrifter |
+    | Text | https://id.kb.se/term/rda/Text |
+    
 # Instans
 
 ####	Nya instanstyper
@@ -352,4 +359,5 @@ Gamla verkstyperna uttrycks med contentType (RDA-termlista) eller genreForm (SAO
 ```
 
 </details>
+
 
