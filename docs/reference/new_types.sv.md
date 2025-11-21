@@ -47,6 +47,7 @@ Gamla verkstyperna uttrycks med contentType (RDA-termlista) eller genreForm (SAO
 <summary>Mappningen mellan gamla verktyperna och contentType (RDA-termlista) eller genreForm (SAOGF-termlista)</summary>
 
 |gamla verktyper  | contentType/genreForm |
+
 | :------------- | -------------: |
 | ManuscriptText  |https://id.kb.se/term/saogf/Handskrifter  |
 | Text  | https://id.kb.se/term/rda/Text  |
@@ -104,6 +105,7 @@ Gamla verkstyperna uttrycks med contentType (RDA-termlista) eller genreForm (SAO
 <summary>Mappningen mellan gamla IssuanceType och versktyperna</summary>  
 
  |Issuance Type  | ny versktyp |
+ 
 | ------------- | ------------- |
 | Monografisk resurs |"instanceOf": {"@type": "Monograph"}  |
 | Integrerande  | "instanceOf": { "@type": "Integrating"}  |
@@ -350,3 +352,4 @@ Gamla verkstyperna uttrycks med contentType (RDA-termlista) eller genreForm (SAO
 ```
 
 </details>
+
