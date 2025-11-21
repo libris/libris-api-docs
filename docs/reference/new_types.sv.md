@@ -42,13 +42,13 @@ Gamla verkstyperna uttrycks med contentType (RDA-termlista) eller genreForm (SAO
 
 
 
-<details>
 
-<summary>Mappningen mellan gamla verktyperna och contentType (RDA-termlista) eller genreForm (SAOGF-termlista)</summary>
+
+??? note Mappningen mellan gamla verktyperna och contentType (RDA-termlista) eller genreForm (SAOGF-termlista)
 
 |gamla verktyper  | contentType/genreForm |
 
-| :------------- | -------------: |
+| ------------- | -------------|
 | ManuscriptText  |https://id.kb.se/term/saogf/Handskrifter  |
 | Text  | https://id.kb.se/term/rda/Text  |
 |Audio| https://id.kb.se/term/rda/SpokenWord  |
@@ -70,14 +70,8 @@ Gamla verkstyperna uttrycks med contentType (RDA-termlista) eller genreForm (SAO
 |MovingImage|https://id.kb.se/term/rda/TwoDimensionalMovingImage  |
 |StillImage|https://id.kb.se/term/rda/StillImage |
   
-</details>
 
-??? note "Mappningen mellan gamla verktyperna"
-    
-    | gamla verktyper | contentType/genreForm |
-    | :------------- | -------------: |
-    | ManuscriptText | https://id.kb.se/term/saogf/Handskrifter |
-    | Text | https://id.kb.se/term/rda/Text |
+
     
 # Instans
 
@@ -359,5 +353,6 @@ Gamla verkstyperna uttrycks med contentType (RDA-termlista) eller genreForm (SAO
 ```
 
 </details>
+
 
 
