@@ -44,31 +44,31 @@ Gamla verkstyperna uttrycks med contentType (RDA-termlista) eller genreForm (SAO
 
 
 
-??? note Mappningen mellan gamla verktyperna och contentType (RDA-termlista) eller genreForm (SAOGF-termlista)
+??? note "Mappningen mellan gamla verktyperna och contentType (RDA-termlista) eller genreForm (SAOGF-termlista)"
 
-|gamla verktyper  | contentType/genreForm |
+    |gamla verktyper  | contentType/genreForm |
 
-| ------------- | -------------|
-| ManuscriptText  |https://id.kb.se/term/saogf/Handskrifter  |
-| Text  | https://id.kb.se/term/rda/Text  |
-|Audio| https://id.kb.se/term/rda/SpokenWord  |
-|NotatedMusic|https://id.kb.se/term/rda/NotatedMusic  |
-|MixedMaterial|https://id.kb.se/term/ktg/MixedMaterial|
-|Cartography|https://id.kb.se/term/rda/CartographicImage|
-|Object|https://id.kb.se/term/rda/ThreeDimensionalForm  |
-|Multimedia|https://id.kb.se/term/rda/ComputerProgram|
-|Visual|se subklasser MovingImage, StillImage |
-|Dataset|https://id.kb.se/term/ktg/Dataset|
-|NotatedMovement|https://id.kb.se/term/rda/NotatedMovement|
-|Software|https://id.kb.se/term/rda/ComputerProgram|
-|Music|https://id.kb.se/term/saogf/Music|
-|MusicAudio|https://id.kb.se/term/rda/PerformedMusic|
-|NonMusicAudio|https://id.kb.se/term/rda/Sounds|
-|ManuscriptNotatedMusic| https://id.kb.se/term/saogf/Handskrifter + https://id.kb.se/term/rda/NotatedMusic |
-|Kit|https://id.kb.se/term/ktg/Kit |
-|ManuscriptCartography|https://id.kb.se/term/saogf/Handskrifter|  
-|MovingImage|https://id.kb.se/term/rda/TwoDimensionalMovingImage  |
-|StillImage|https://id.kb.se/term/rda/StillImage |
+    | ------------- | -------------|
+    | ManuscriptText  |https://id.kb.se/term/saogf/Handskrifter  |
+    | Text  | https://id.kb.se/term/rda/Text  |
+    |Audio| https://id.kb.se/term/rda/SpokenWord  |
+    |NotatedMusic|https://id.kb.se/term/rda/NotatedMusic  |
+    |MixedMaterial|https://id.kb.se/term/ktg/MixedMaterial|
+    |Cartography|https://id.kb.se/term/rda/CartographicImage|
+    |Object|https://id.kb.se/term/rda/ThreeDimensionalForm  |
+    |Multimedia|https://id.kb.se/term/rda/ComputerProgram|
+    |Visual|se subklasser MovingImage, StillImage |
+    |Dataset|https://id.kb.se/term/ktg/Dataset|
+    |NotatedMovement|https://id.kb.se/term/rda/NotatedMovement|
+    |Software|https://id.kb.se/term/rda/ComputerProgram|
+    |Music|https://id.kb.se/term/saogf/Music|
+    |MusicAudio|https://id.kb.se/term/rda/PerformedMusic|
+    |NonMusicAudio|https://id.kb.se/term/rda/Sounds|
+    |ManuscriptNotatedMusic| https://id.kb.se/term/saogf/Handskrifter + https://id.kb.se/term/rda/NotatedMusic |
+    |Kit|https://id.kb.se/term/ktg/Kit |
+    |ManuscriptCartography|https://id.kb.se/term/saogf/Handskrifter|  
+    |MovingImage|https://id.kb.se/term/rda/TwoDimensionalMovingImage  |
+    |StillImage|https://id.kb.se/term/rda/StillImage |
   
 
 
@@ -353,6 +353,7 @@ Gamla verkstyperna uttrycks med contentType (RDA-termlista) eller genreForm (SAO
 ```
 
 </details>
+
 
 
 
