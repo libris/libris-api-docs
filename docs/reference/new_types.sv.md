@@ -105,20 +105,19 @@ Gamla verkstyperna uttrycks med contentType (RDA-termlista) eller genreForm (SAO
 
 ####	egenskapen IssuanceType utgår. Uppgifterna finns i nya versktyperna  
 
-<details>
-
-<summary>Mappningen mellan gamla IssuanceType och versktyperna</summary>  
-
- |Issuance Type  | ny versktyp |
- 
-| ------------- | ------------- |
-| Monografisk resurs |"instanceOf": {"@type": "Monograph"}  |
-| Integrerande  | "instanceOf": { "@type": "Integrating"}  |
-|Samling|"instanceOf": {"@type": "Collection"} |
-|Seriell resurs |"instanceOf": {"@type": "Serial"}   |
 
 
-</details>
+??? note "Mappningen mellan gamla IssuanceType och versktyperna"
+
+    |Issuance Type  | ny versktyp | 
+    | ------------- | ------------- |
+    | Monografisk resurs |"instanceOf": {"@type": "Monograph"}  |
+    | Integrerande  | "instanceOf": { "@type": "Integrating"}  |
+    |Samling|"instanceOf": {"@type": "Collection"} |
+    |Seriell resurs |"instanceOf": {"@type": "Serial"}   |
+
+
+
 
 
 
@@ -357,6 +356,7 @@ Gamla verkstyperna uttrycks med contentType (RDA-termlista) eller genreForm (SAO
 ```
 
 </details>
+
 
 
 
