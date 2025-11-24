@@ -40,14 +40,18 @@ Gamla verkstyperna uttrycks med contentType (RDA-termlista) eller genreForm (SAO
 
 
 
-
+??? note "Mappningen mellan gamla verktyperna"
+    
+    | gamla verktyper | contentType/genreForm |
+    | :------------- | -------------: |
+    | ManuscriptText | https://id.kb.se/term/saogf/Handskrifter |
+    | Text | https://id.kb.se/term/rda/Text |
 
 
 
 ??? note "Mappningen mellan gamla verktyperna och contentType (RDA-termlista) eller genreForm (SAOGF-termlista)"
 
     |gamla verktyper  | contentType/genreForm |
-
     | ------------- | -------------|
     | ManuscriptText  |https://id.kb.se/term/saogf/Handskrifter  |
     | Text  | https://id.kb.se/term/rda/Text  |
@@ -353,6 +357,7 @@ Gamla verkstyperna uttrycks med contentType (RDA-termlista) eller genreForm (SAO
 ```
 
 </details>
+
 
 
 
