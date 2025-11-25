@@ -27,7 +27,7 @@ nav:
       - reference/_findhold.md
       - reference/_compilemarc.md
       - reference/_convert.md
-      - reference/new_types.md
+      #- reference/new_types.md
     - "Sök-API:er":
       - reference/find.md
       - reference/sparql.md
