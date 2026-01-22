@@ -2,8 +2,7 @@
 title: Typnormalisering
 ---
 Arbetet med typnormaliseringen är pågående och instruktionen kommer att justeras därefter.
-Läs mer om typnormaliseringen
-(Länk kommer)
+
 
 De egenskaperna som påverkas är: verkstyp, instanstyp, innehållstyp, utgivningssätt, bärartyp, mediatyp, genre/form
 
@@ -39,34 +38,38 @@ Gamla verkstyperna uttrycks med contentType (RDA-termlista) eller genreForm (SAO
 ```
 
 
-??? note "Mappningen mellan gamla verktyperna och contentType (RDA-termlista) eller genreForm (SAOGF-termlista)"
 
-    |gamla verktyper  | contentType/genreForm |
-    | ------------- | -------------|
-    | ManuscriptText  |https://id.kb.se/term/saogf/Handskrifter  |
-    | Text  | https://id.kb.se/term/rda/Text  |
-    |Audio| https://id.kb.se/term/rda/SpokenWord  |
-    |NotatedMusic|https://id.kb.se/term/rda/NotatedMusic  |
-    |MixedMaterial|https://id.kb.se/term/ktg/MixedMaterial|
-    |Cartography|https://id.kb.se/term/rda/CartographicImage|
-    |Object|https://id.kb.se/term/rda/ThreeDimensionalForm  |
-    |Multimedia|https://id.kb.se/term/rda/ComputerProgram|
-    |Visual|se subklasser MovingImage, StillImage |
-    |Dataset|https://id.kb.se/term/ktg/Dataset|
-    |NotatedMovement|https://id.kb.se/term/rda/NotatedMovement|
-    |Software|https://id.kb.se/term/rda/ComputerProgram|
-    |Music|https://id.kb.se/term/saogf/Music|
-    |MusicAudio|https://id.kb.se/term/rda/PerformedMusic|
-    |NonMusicAudio|https://id.kb.se/term/rda/Sounds|
-    |ManuscriptNotatedMusic| https://id.kb.se/term/saogf/Handskrifter + https://id.kb.se/term/rda/NotatedMusic |
-    |Kit|https://id.kb.se/term/ktg/Kit |
-    |ManuscriptCartography|https://id.kb.se/term/saogf/Handskrifter|  
-    |MovingImage|https://id.kb.se/term/rda/TwoDimensionalMovingImage  |
-    |StillImage|https://id.kb.se/term/rda/StillImage |
+
+
+<details>
+
+<summary>Mappningen mellan gamla verktyperna och contentType (RDA-termlista) eller genreForm (SAOGF-termlista)</summary>
+
+|gamla verktyper  | contentType/genreForm |
+| ------------- | ------------- |
+| ManuscriptText  |https://id.kb.se/term/saogf/Handskrifter  |
+| Text  | https://id.kb.se/term/rda/Text  |
+|Audio| https://id.kb.se/term/rda/SpokenWord  |
+|NotatedMusic|https://id.kb.se/term/rda/NotatedMusic  |
+|MixedMaterial|https://id.kb.se/term/ktg/MixedMaterial|
+|Cartography|https://id.kb.se/term/rda/CartographicImage|
+|Object|https://id.kb.se/term/rda/ThreeDimensionalForm  |
+|Multimedia|https://id.kb.se/term/rda/ComputerProgram|
+|Visual|se subklasser MovingImage, StillImage |
+|Dataset|https://id.kb.se/term/ktg/Dataset|
+|NotatedMovement|https://id.kb.se/term/rda/NotatedMovement|
+|Software|https://id.kb.se/term/rda/ComputerProgram|
+|Music|https://id.kb.se/term/saogf/Music|
+|MusicAudio|https://id.kb.se/term/rda/PerformedMusic|
+|NonMusicAudio|https://id.kb.se/term/rda/Sounds|
+|ManuscriptNotatedMusic| https://id.kb.se/term/saogf/Handskrifter + https://id.kb.se/term/rda/NotatedMusic |
+|Kit|https://id.kb.se/term/ktg/Kit |
+|ManuscriptCartography|https://id.kb.se/term/saogf/Handskrifter|  
+|MovingImage|https://id.kb.se/term/rda/TwoDimensionalMovingImage  |
+|StillImage|https://id.kb.se/term/rda/StillImage |
   
+</details>
 
-
-    
 # Instans
 
 ####	Nya instanstyper
@@ -95,19 +98,19 @@ Gamla verkstyperna uttrycks med contentType (RDA-termlista) eller genreForm (SAO
 
 ####	egenskapen IssuanceType utgår. Uppgifterna finns i nya versktyperna  
 
+<details>
+
+<summary>Mappningen mellan gamla IssuanceType och versktyperna</summary>  
+
+ |Issuance Type  | ny versktyp |
+| ------------- | ------------- |
+| Monografisk resurs |"instanceOf": {"@type": "Monograph"}  |
+| Integrerande  | "instanceOf": { "@type": "Integrating"}  |
+|Samling|"instanceOf": {"@type": "Collection"} |
+|Seriell resurs |"instanceOf": {"@type": "Serial"}   |
 
 
-??? note "Mappningen mellan gamla IssuanceType och versktyperna"
-
-    |Issuance Type  | ny versktyp | 
-    | ------------- | ------------- |
-    | Monografisk resurs |"instanceOf": {"@type": "Monograph"}  |
-    | Integrerande  | "instanceOf": { "@type": "Integrating"}  |
-    |Samling|"instanceOf": {"@type": "Collection"} |
-    |Seriell resurs |"instanceOf": {"@type": "Serial"}   |
-
-
-
+</details>
 
 
 
@@ -344,7 +347,6 @@ Gamla verkstyperna uttrycks med contentType (RDA-termlista) eller genreForm (SAO
   ]
 }
 ```
-
 </details>
 
 
