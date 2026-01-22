@@ -88,8 +88,10 @@ Gamla verkstyperna uttrycks med contentType (RDA-termlista) eller genreForm (SAO
    
         "category": [
         {
-          "@id": "https://id.kb.se/term/ktg/PrintedVolume"
-        }
+          "@id": "https://id.kb.se/term/ktg/Print"
+        },
+      {"@id": "https://id.kb.se/term/rda/Volume"
+         }
       ]
                  
 
@@ -339,15 +341,19 @@ Gamla verkstyperna uttrycks med contentType (RDA-termlista) eller genreForm (SAO
       ],
  # "NY EGENSKAP för MediaType, CarrierType"
       "category": [
-        {  
-          "@id": "https://id.kb.se/term/ktg/PrintedVolume"   
-        }
+        {
+              "@id": "https://id.kb.se/term/ktg/Print"
+            },
+            {
+              "@id": "https://id.kb.se/term/rda/Volume"
+            }
       ]
     }
   ]
 }
 ```
 </details>
+
 
 
 
