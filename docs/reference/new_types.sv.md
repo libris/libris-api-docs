@@ -38,7 +38,7 @@ Hit flyttas gamla verkstyperna, genreForm och innehållstyp.
 ```
 
 ### Mappning gamla verkstyper -> contentType/genreform
-Tabellen nedan innehåller mappningen mellan gamla verktyperna och contentType (RDA-termlista) eller genreForm (SAOGF-termlista)
+Tabellen nedan innehåller mappningen mellan gamla verktyperna och contentType (RDA-termlista) eller genreForm (SAOGF-termlista).
 
 |Gamla verkstyper  | contentType/genreForm |
 | ------------- | ------------- |
@@ -88,7 +88,7 @@ Hit flyttas MediaType och CarrierType (och genre/form om den fanns i instansdele
 
 ###	Egenskapen IssuanceType utgår
 
-Uppgifterna finns i nya verkstyperna  .
+Uppgifterna finns i nya verkstyperna.
 
 #### Mappningen mellan gamla IssuanceType och verkstyperna
 
