@@ -1,14 +1,14 @@
 ---
 title: Typnormalisering
 ---
+# Typnormalisering
+
 Arbetet med typnormaliseringen är pågående och instruktionen kommer att justeras därefter.
 
+De egenskaper som påverkas är verkstyp, instanstyp, innehållstyp, utgivningssätt, bärartyp, mediatyp, och genre/form.
 
-De egenskaperna som påverkas är: verkstyp, instanstyp, innehållstyp, utgivningssätt, bärartyp, mediatyp, genre/form
-
-
-# Verk
-####	Nya verkstyper
+## Verk
+###	Nya verkstyper
 
 
 ```json
@@ -18,34 +18,31 @@ De egenskaperna som påverkas är: verkstyp, instanstyp, innehållstyp, utgivnin
                  "Collection"
                  "Integrating"
                  
-}
+    }
 ```
-Gamla verkstyperna uttrycks med contentType (RDA-termlista) eller genreForm (SAOGF-termlista)
-####	Ny egenskap Kategori på verket. Hit flyttas gamla verkstyperna, genreForm och innehållstyp
+Gamla verkstyperna uttrycks med contentType (RDA-termlista) eller genreForm (SAOGF-termlista).
+
+### Ny verksegenskap: kategori
+
+Hit flyttas gamla verkstyperna, genreForm och innehållstyp.
+
 ```json
    "instanceOf": {
         "category": [
           {
             "@id": "https://id.kb.se/term/rda/Text"
           },
-         {
+          {
             "@id": "https://id.kb.se/saogf/Romaner"
           }
         ],
-                 
-}
-
+    }
 ```
 
+### Mappning gamla verkstyper -> contentType/genreform
+Tabellen nedan innehåller mappningen mellan gamla verktyperna och contentType (RDA-termlista) eller genreForm (SAOGF-termlista)
 
-
-
-
-<details>
-
-<summary>Mappningen mellan gamla verktyperna och contentType (RDA-termlista) eller genreForm (SAOGF-termlista)</summary>
-
-|gamla verktyper  | contentType/genreForm |
+|Gamla verkstyper  | contentType/genreForm |
 | ------------- | ------------- |
 | ManuscriptText  |https://id.kb.se/term/saogf/Handskrifter  |
 | Text  | https://id.kb.se/term/rda/Text  |
@@ -67,58 +64,48 @@ Gamla verkstyperna uttrycks med contentType (RDA-termlista) eller genreForm (SAO
 |ManuscriptCartography|https://id.kb.se/term/saogf/Handskrifter|  
 |MovingImage|https://id.kb.se/term/rda/TwoDimensionalMovingImage  |
 |StillImage|https://id.kb.se/term/rda/StillImage |
-  
-</details>
 
-# Instans
+## Instans
 
-####	Nya instanstyper
-
+###	Nya instanstyper
 
 ```json
-   
         "@type": "PhysicalResource"
                  "DigitalResource"
-                 
-                 
 ```
 
-####	Ny egenskap Kategori på instansen. Hit flyttas MediaType, CarrierType (och genre/form om den fanns i instansdelen och är olänkad)
+### Ny instansegenskap: kategori
+
+Hit flyttas MediaType och CarrierType (och genre/form om den fanns i instansdelen och är olänkad).
 ```json
    
         "category": [
-        {
-          "@id": "https://id.kb.se/term/ktg/Print"
-        },
-      {"@id": "https://id.kb.se/term/rda/Volume"
-         }
-      ]
-                 
-
-
+          {
+            "@id": "https://id.kb.se/term/ktg/Print"
+          },
+          {
+            "@id": "https://id.kb.se/term/rda/Volume"
+          }
+        ]
 ```
 
-####	egenskapen IssuanceType utgår. Uppgifterna finns i nya versktyperna  
+###	Egenskapen IssuanceType utgår
 
-<details>
+Uppgifterna finns i nya verkstyperna  .
 
-<summary>Mappningen mellan gamla IssuanceType och versktyperna</summary>  
+#### Mappningen mellan gamla IssuanceType och verkstyperna
 
- |Issuance Type  | ny versktyp |
+|Issuance Type  | Ny verkstyp |
 | ------------- | ------------- |
-| Monografisk resurs |"instanceOf": {"@type": "Monograph"}  |
-| Integrerande  | "instanceOf": { "@type": "Integrating"}  |
-|Samling|"instanceOf": {"@type": "Collection"} |
-|Seriell resurs |"instanceOf": {"@type": "Serial"}   |
+| Monografisk resurs | `"instanceOf": {"@type": "Monograph"}` |
+| Integrerande  | `"instanceOf": {"@type": "Integrating"}` |
+|Samling| `"instanceOf": {"@type": "Collection"}` |
+|Seriell resurs | `"instanceOf": {"@type": "Serial"}` |
 
+### Exempel i JSON efter typnormaliseringen
 
-</details>
+Se kommentarer inne i exemplet. Kommentarerna inleds med `#`.
 
-
-
-<details>
-<summary>Exempel i JSON efter typnormaliseringen</summary>   
-   
 ```json
 {
   "@graph": [
@@ -150,7 +137,7 @@ Gamla verkstyperna uttrycks med contentType (RDA-termlista) eller genreForm (SAO
     },
     {
       "@id": "https://id.kb.se/TEMPID#it",
-     #   "NY INSTANSTYP"
+##### "NY INSTANSTYP"
       "@type": "PhysicalResource",  
       "hasTitle": [
         {
@@ -274,14 +261,14 @@ Gamla verkstyperna uttrycks med contentType (RDA-termlista) eller genreForm (SAO
         }
       ],
       "instanceOf": {
-     # "NY VERKSTYP" 
+####### "NY VERKSTYP" 
         "@type": "Monograph",    
         "language": [
           {
             "@id": "https://id.kb.se/language/swe"
           }
         ],
- #  "NY EGENSKAP för Innehållstyp och GenreForm"
+####### "NY EGENSKAP för Innehållstyp och GenreForm"
         "category": [
           {   
             "@id": "https://id.kb.se/term/rda/Text"     
@@ -339,7 +326,7 @@ Gamla verkstyperna uttrycks med contentType (RDA-termlista) eller genreForm (SAO
           "role": []
         }
       ],
- # "NY EGENSKAP för MediaType, CarrierType"
+##### "NY EGENSKAP för MediaType, CarrierType"
       "category": [
         {
               "@id": "https://id.kb.se/term/ktg/Print"
@@ -352,12 +339,3 @@ Gamla verkstyperna uttrycks med contentType (RDA-termlista) eller genreForm (SAO
   ]
 }
 ```
-</details>
-
-
-
-
-
-
-
-
