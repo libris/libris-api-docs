@@ -10,15 +10,13 @@ De egenskaper som påverkas är verkstyp, instanstyp, innehållstyp, utgivningss
 ## Verk
 ###	Nya verkstyper
 
-
 ```json
-   "instanceOf": {
-        "@type": "Monograph"
-                 "Serial"
-                 "Collection"
-                 "Integrating"
-                 
-    }
+"instanceOf": {
+  "@type": "Monograph"
+           "Serial"
+           "Collection"
+           "Integrating"
+}
 ```
 Gamla verkstyperna uttrycks med contentType (RDA-termlista) eller genreForm (SAOGF-termlista).
 
@@ -27,16 +25,16 @@ Gamla verkstyperna uttrycks med contentType (RDA-termlista) eller genreForm (SAO
 Hit flyttas gamla verkstyperna, genreForm och innehållstyp.
 
 ```json
-   "instanceOf": {
-        "category": [
-          {
-            "@id": "https://id.kb.se/term/rda/Text"
-          },
-          {
-            "@id": "https://id.kb.se/saogf/Romaner"
-          }
-        ],
-    }
+"instanceOf": {
+    "category": [
+      {
+        "@id": "https://id.kb.se/term/rda/Text"
+      },
+      {
+        "@id": "https://id.kb.se/saogf/Romaner"
+      }
+    ],
+}
 ```
 
 ### Mappning gamla verkstyper -> contentType/genreform
@@ -70,23 +68,22 @@ Tabellen nedan innehåller mappningen mellan gamla verktyperna och contentType (
 ###	Nya instanstyper
 
 ```json
-        "@type": "PhysicalResource"
-                 "DigitalResource"
+"@type": "PhysicalResource"
+         "DigitalResource"
 ```
 
 ### Ny instansegenskap: kategori
 
 Hit flyttas MediaType och CarrierType (och genre/form om den fanns i instansdelen och är olänkad).
 ```json
-   
-        "category": [
-          {
-            "@id": "https://id.kb.se/term/ktg/Print"
-          },
-          {
-            "@id": "https://id.kb.se/term/rda/Volume"
-          }
-        ]
+"category": [
+  {
+    "@id": "https://id.kb.se/term/ktg/Print"
+  },
+  {
+    "@id": "https://id.kb.se/term/rda/Volume"
+  }
+]
 ```
 
 ###	Egenskapen IssuanceType utgår
