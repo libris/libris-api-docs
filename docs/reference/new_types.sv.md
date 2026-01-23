@@ -18,7 +18,7 @@ De egenskaper som påverkas är verkstyp, instanstyp, innehållstyp, utgivningss
            "Integrating"
 }
 ```
-Gamla verkstyperna uttrycks med contentType (RDA-termlista) eller genreForm (SAOGF-termlista).
+Gamla verkstyperna uttrycks med contentType (RDA-termlista) eller genreForm (SAOGF-termlista) i en ny egenskap Kategori.
 
 ### Ny verksegenskap: kategori
 
@@ -38,7 +38,7 @@ Hit flyttas gamla verkstyperna, genreForm och innehållstyp.
 ```
 
 ### Mappning gamla verkstyper -> contentType/genreform
-Tabellen nedan innehåller mappningen mellan gamla verktyperna och contentType (RDA-termlista) eller genreForm (SAOGF-termlista).
+Tabellen nedan innehåller mappningen mellan gamla verkstyperna och contentType (RDA-termlista) eller genreForm (SAOGF-termlista).
 
 |Gamla verkstyper  | contentType/genreForm |
 | ------------- | ------------- |
@@ -336,3 +336,51 @@ Se kommentarer inne i exemplet. Kommentarerna inleds med `#`.
   ]
 }
 ```
+
+### Exempel: strömmande film
+
+```json
+"mainEntity": {          
+          "@type": "DigitalResource",
+          "category": [{
+            "@id": "https://id.kb.se/term/rda/OnlineResource"
+          }]
+          
+          "instanceOf": {
+            "@type": "Monograph",            
+            "category": [{
+              "@id": "https://id.kb.se/term/rda/TwoDimensionalMovingImage"
+            },
+            {
+              "@id": "https://id.kb.se/term/saogf/Filmer"
+            }
+          ]         
+        }
+      }
+```
+
+### Exempel: punktskriftsbok
+
+```json
+  "mainEntity": {          
+          "@type": "PhysicalResource",  
+          "category": [{
+            "@id": "https://id.kb.se/term/ktg/Braille"
+          },
+            {
+            "@id": "https://id.kb.se/term/rda/Volume"
+          }]  
+                
+          "instanceOf": {
+            "@type": "Monograph",            
+            "category": [{
+              "@id": "https://id.kb.se/term/saogf/Punktskriftsb%C3%B6cker"
+            },
+            {
+              "@id": "https://id.kb.se/term/rda/TactileText"
+            }
+          ]        
+        }
+      }
+```
+
