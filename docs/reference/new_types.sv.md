@@ -78,7 +78,7 @@ Hit flyttas MediaType och CarrierType (och genre/form om den fanns i instansdele
 ```json
 "category": [
   {
-    "@id": "https://id.kb.se/term/ktg/Print"
+    "@id": "https://id.kb.se/term/saobf/Print"
   },
   {
     "@id": "https://id.kb.se/term/rda/Volume"
@@ -326,7 +326,7 @@ Se kommentarer inne i exemplet. Kommentarerna inleds med `#`.
 ##### "NY EGENSKAP för MediaType, CarrierType"
       "category": [
         {
-              "@id": "https://id.kb.se/term/ktg/Print"
+              "@id": "https://id.kb.se/term/saobf/Print"
             },
             {
               "@id": "https://id.kb.se/term/rda/Volume"
@@ -365,7 +365,7 @@ Se kommentarer inne i exemplet. Kommentarerna inleds med `#`.
   "mainEntity": {          
           "@type": "PhysicalResource",  
           "category": [{
-            "@id": "https://id.kb.se/term/ktg/Braille"
+            "@id": "https://id.kb.se/term/saobf/Braille"
           },
             {
             "@id": "https://id.kb.se/term/rda/Volume"
@@ -383,4 +383,5 @@ Se kommentarer inne i exemplet. Kommentarerna inleds med `#`.
         }
       }
 ```
+
 
