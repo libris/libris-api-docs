@@ -21,7 +21,7 @@ Vanliga [namnrymdsprefix](https://www.w3.org/TR/sparql11-query/#prefNames) är [
 Dessa kan användas i frågorna utan att behöva deklareras explicit.
 För termer ur KBV fungerar det fördefinierade prefixet `kbv:`, men i exempelfrågorna som följer använder vi istället standardprefixet `:` (deklareras explicit) för bättre läsbarhet.
 
-Du kan också använda alternativa gränssnitt, t.ex. [Yasgui](https://yasgui.triply.cc/). Ange då `https://libris.kb.se/sparql` som endpoint.
+Du kan också använda alternativa gränssnitt, till exempel [Yasgui](https://yasgui.triply.cc/). Ange då `https://libris.kb.se/sparql` som endpoint.
 
 Observera att enklare frågor också kan besvaras med hjälp av [sök-API:et](../reference/find.md).
 
@@ -60,7 +60,7 @@ SELECT DISTINCT ?language ?langName {
 }
 ```
 **Kommentar:**  
-Här förutsätter vi att författaren alltid ligger som länkad entitet under `:agent`. En variant för att matcha även lokala entiteter vore att byta ut URI:n `<https://libris.kb.se/qn247n18248vs58#it>` mot en blanknod `[ :givenName "Selma" ; :familyName "Lagerlöf" ]`. Detta fungerar dock dåligt i det fall författaren har ett mer generiskt namn.  
+Här förutsätter vi att författaren alltid ligger som länkad entitet under `:agent`. En variant för att matcha även lokala entiteter vore att byta ut URI:n `<https://libris.kb.se/qn247n18248vs58#it>` mot en blanknod `[ :givenName "Selma" ; :familyName "Lagerlöf" ]`. Detta fungerar dock dåligt i det fall författaren har ett mer vanligt namn.  
 
 ### Vilka språk har svensk utgivning översatts till mellan åren 2000-2010?
 ```sparql
@@ -304,7 +304,7 @@ SELECT (COUNT(DISTINCT ?publisherLabel) AS ?count) {
 **Kommentar:**  
 Här frågar vi snarare "Vilka utgivare gav ut något i Sverige under 1970?". Tillräckliga påståenden om utgivare för att besvara originalfrågan saknas. Utgivare ligger mestadels som lokala entiteter, där enbart dess benämningar anges. Här skulle vi istället vilja att utgivare representerades av URI:er och   länkats under `:agent`. På respektive URI skulle sedan relevanta påståenden kunna samlas, exempelvis när förlaget grundats och landet det verkar i.
 
-Om utgivare var länkade skulle vi också få ett mer exakt resultat, tack vare att vi då skulle kunna garantera att antalet _unika_ utgivare räknas. Att räkna blanknoder fungerar inte eftersom vi inte kan särskilja vilka som representerar samma förlag. Istället räknar vi antalet unika benämningar, även om inte heller detta sätt garanterar ett helt exakt resultat då det kan förekomma olika benämningar på samma förlag, t.ex. "Natur & Kultur" och "N&K".
+Om utgivare var länkade skulle vi också få ett mer exakt resultat, tack vare att vi då skulle kunna garantera att antalet _unika_ utgivare räknas. Att räkna blanknoder fungerar inte eftersom vi inte kan särskilja vilka som representerar samma förlag. Istället räknar vi antalet unika benämningar, även om inte heller detta sätt garanterar ett helt exakt resultat då det kan förekomma olika benämningar på samma förlag, till exempel "Natur & Kultur" och "N&K".
 
 ### Hur många barnböcker gavs ut på ett annat språk än svenska av svenska utgivare 2019?
 ```sparql
@@ -469,7 +469,7 @@ SELECT (COUNT(DISTINCT ?person) AS ?count) {
 }
 ```
 **Kommentar:**  
-För att få motsvarande resultat för andra entitetstyper än personer räcker det att ändra `:Person` till önskad typ, t.ex. `:Organization`.
+För att få motsvarande resultat för andra entitetstyper än personer räcker det att ändra `:Person` till önskad typ, till exempel `:Organization`.
 
 ### Vilka SAO-termer skapades år 2024?
 ```sparql
@@ -528,7 +528,7 @@ SELECT * WHERE {
 }
 ```
 **Kommentar**:  
-Kan hitta sådana som till synes ser ut att vara korrekta, men som egentligen är trasiga (t.ex. `\n0000000115796660`).
+Kan hitta sådana som till synes ser ut att vara korrekta, men som egentligen är trasiga (till exempel `\n0000000115796660`).
 
 ### Hur många katalogposter skapade den elektroniska plikten under 2023?
 ```sparql
