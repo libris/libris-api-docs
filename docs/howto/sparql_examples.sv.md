@@ -38,7 +38,7 @@ SELECT (COUNT(DISTINCT ?novel) as ?count) {
 Här frågar vi efter antalet _instanser_ vilket innebär att t.ex. olika bandtyper räknas individuellt.
 Att räkna antalet unika verk är tyvärr inte möjligt i dagsläget, eftersom verk inte har URI:er att referera till.
 
-I nuvarande data identifieras romaner med genre/form-termen `marc:Novel`, men för att göra frågan beständig matchar vi även ekvivalenta termer (länkade med `:sameAs` eller `:exactMatch`).
+Romaner identifieras med genre/form-termen `saogf:Romaner` och de termer som hierarkiskt är smalare än denna.
 
 I denna fråga och många av de följande används s.k. [property paths](https://www.w3.org/TR/sparql11-query/#propertypaths)
 för att inte behöva skriva ut varje trippel i sin helhet.
@@ -103,7 +103,6 @@ SELECT DISTINCT ?spanishInstance ?spanishTitle ?swedishTitle {
 **Kommentar:**
 Tyvärr är det inte möjligt att få fram vilka svenska verk som översatts till spanska då det kräver att verket ligger länkat under `bf2:translationOf`. I dagsläget får vi nöja oss med spanska instanser som översatts _från_ svenska.
 
-Det vore även önskvärt att kunna ange _en_ term för _all_ skönlitteratur. Visserligen finns `saogf:Sk%C3%B6nlitteratur` men den har hittills för lite användning och dess relation till marc-termerna är inte heller definierad.
 
 ### Vilka serietecknare har översatts till svenska under 1980-2020?
 ```sparql
@@ -130,7 +129,7 @@ SELECT DISTINCT ?cartoonist (CONCAT(?givenName, " ", ?familyName) as ?name) {
 **Kommentar:**  
 Serietecknare som ligger som lokala entiteter (blanknoder) under `:agent` filtreras här bort. Vill man ha med även de lokala entiteterna i resultatet tar man med fördel bort `FILTER(isIri(?cartoonist))`, dock innebär detta att samma serietecknare kan förekomma flera gånger i resultatet.
 
-### Hur många franska barnböcker översättes till svenska under 1980-2020?
+### Hur många franska barnböcker översattes till svenska under 1980-2020?
 ```sparql
 PREFIX : <https://id.kb.se/vocab/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -150,7 +149,7 @@ SELECT (COUNT(DISTINCT ?book) AS ?count) {
 ```
 **Kommentar:**  
 Här frågar vi snarare efter antalet svenska resurser som översatts _från_ franska. Det omvända kräver att verken ligger länkade under `:translationOf`, vilket inte är fallet i dagsläget.  
-Vi frågar heller inte uteslutande efter böcker. Det är inte möjligt då det saknas en generell struktur som indikerar att en resurs är specifikt en bok. Däremot är det fullt möjligt att begränsa frågan till monografier (instansen) av typen text (verket).
+Vi frågar heller inte uteslutande efter böcker. Det är inte möjligt då det saknas en generell struktur som indikerar att en resurs är specifikt en bok. Däremot är det fullt möjligt att begränsa frågan till monografier (verkstyp) av typen text (innehållstyp i verkskategorin).
 
 ### Hur många böcker gavs ut på samiska utifrån aspekterna genre, målgrupp och utgivningsår?
 ```sparql
@@ -210,7 +209,6 @@ SELECT (COUNT(DISTINCT ?book) AS ?count) {
 }
 ```
 **Kommentar:**  
-I brist på en klass som representerar facklitteratur får vi här använda `marc:NotFictionNotFurtherSpecified` (=Ej skönlitterärt verk).
 Det vore önskvärt att kunna referera till en URI som representerar förlaget Natur & Kultur men eftersom utgivare inte är länkade får vi istället matcha lokala entiteter / blanknoder på benämning.
 
 ### Hur många böcker ges ut av egenutgivare varje år?
