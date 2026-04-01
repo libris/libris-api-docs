@@ -21,7 +21,7 @@ Vanliga [namnrymdsprefix](https://www.w3.org/TR/sparql11-query/#prefNames) är [
 Dessa kan användas i frågorna utan att behöva deklareras explicit.
 För termer ur KBV fungerar det fördefinierade prefixet `kbv:`, men i exempelfrågorna som följer använder vi istället standardprefixet `:` (deklareras explicit) för bättre läsbarhet.
 
-Du kan också använda alternativa gränssnitt, t.ex. [Yasgui](https://yasgui.triply.cc/). Ange då `https://libris.kb.se/sparql` som endpoint.
+Du kan också använda alternativa gränssnitt, till exempel [Yasgui](https://yasgui.triply.cc/). Ange då `https://libris.kb.se/sparql` som endpoint.
 
 Observera att enklare frågor också kan besvaras med hjälp av [sök-API:et](../reference/find.md).
 
@@ -30,8 +30,7 @@ Observera att enklare frågor också kan besvaras med hjälp av [sök-API:et](..
 PREFIX : <https://id.kb.se/vocab/>
 
 SELECT (COUNT(DISTINCT ?novel) as ?count) {
-    ?gf (:exactMatch|^:exactMatch|:sameAs|^:sameAs)* marc:Novel .
-    ?novel :instanceOf/:genreForm ?gf ;
+  ?novel :instanceOf/:category/(:broader|:broadMatch)* <https://id.kb.se/term/saogf/Romaner> ;
         :publication [ :year "2019" ; :country ctry:sw ] .
 }
 ```
@@ -39,7 +38,7 @@ SELECT (COUNT(DISTINCT ?novel) as ?count) {
 Här frågar vi efter antalet _instanser_ vilket innebär att t.ex. olika bandtyper räknas individuellt.
 Att räkna antalet unika verk är tyvärr inte möjligt i dagsläget, eftersom verk inte har URI:er att referera till.
 
-I nuvarande data identifieras romaner med genre/form-termen `marc:Novel`, men för att göra frågan beständig matchar vi även ekvivalenta termer (länkade med `:sameAs` eller `:exactMatch`).
+Romaner identifieras med genre/form-termen `saogf:Romaner` och de termer som hierarkiskt är smalare än denna.
 
 I denna fråga och många av de följande används s.k. [property paths](https://www.w3.org/TR/sparql11-query/#propertypaths)
 för att inte behöva skriva ut varje trippel i sin helhet.
@@ -47,20 +46,21 @@ för att inte behöva skriva ut varje trippel i sin helhet.
 ### Vilka språk finns Selma Lagerlöf översatt till?
 ```sparql
 PREFIX : <https://id.kb.se/vocab/>
+PREFIX rel: <https://id.kb.se/relator/>
 
 SELECT DISTINCT ?language ?langName {
     [] :contribution [ a :PrimaryContribution ;
             :role rel:author ;
             :agent <https://libris.kb.se/qn247n18248vs58#it> ] ;
-        :translationOf/a :Work ;
+        :translationOf [] ;
         :language ?language .
     ?language :prefLabel ?langName .
 
-    FILTER(lang(?langName) = 'sv')    
+    FILTER(lang(?langName) = 'sv')
 }
 ```
 **Kommentar:**  
-Här förutsätter vi att författaren alltid ligger som länkad entitet under `:agent`. En variant för att matcha även lokala entiteter vore att byta ut URI:n `<https://libris.kb.se/qn247n18248vs58#it>` mot en blanknod `[ :givenName "Selma" ; :familyName "Lagerlöf" ]`. Detta fungerar dock dåligt i det fall författaren har ett mer generiskt namn.  
+Här förutsätter vi att författaren alltid ligger som länkad entitet under `:agent`. En variant för att matcha även lokala entiteter vore att byta ut URI:n `<https://libris.kb.se/qn247n18248vs58#it>` mot en blanknod `[ :givenName "Selma" ; :familyName "Lagerlöf" ]`. Detta fungerar dock dåligt i det fall författaren har ett mer vanligt namn.  
 
 ### Vilka språk har svensk utgivning översatts till mellan åren 2000-2010?
 ```sparql
@@ -85,59 +85,42 @@ Vi kan nämligen ta reda på verkets originalspråk via `:translationOf`, därem
 PREFIX : <https://id.kb.se/vocab/>
 
 SELECT DISTINCT ?spanishInstance ?spanishTitle ?swedishTitle {
-    VALUES ?genreForm {
-        marc:FictionNotFurtherSpecified
-        marc:Drama
-        marc:Essay
-        marc:Novel
-        marc:HumorSatiresEtc
-        marc:Letter
-        marc:ShortStory
-        marc:MixedForms
-        marc:Poetry
-    }
-
-    ?gf (:exactMatch|^:exactMatch|:sameAs|^:sameAs)* ?genreForm .
 
     ?spanishInstance :publication/:year "1990" ;
         :instanceOf ?work .
-    ?work :genreForm ?gf ;
+    ?work :category/:broader* <https://id.kb.se/term/saogf/Sk%C3%B6nlitteratur> ;
         :language lge:spa ;
         :translationOf [ a :Work ; :language lge:swe ] .
+
     OPTIONAL {
         ?spanishInstance :hasTitle [ a :Title ; :mainTitle ?spanishTitle ] .
     }
     OPTIONAL {
         ?work :hasTitle [ a :Title ; :mainTitle ?swedishTitle ] .
     }
-}     
+}
 ```
-**Kommentar:**  
+**Kommentar:**
 Tyvärr är det inte möjligt att få fram vilka svenska verk som översatts till spanska då det kräver att verket ligger länkat under `bf2:translationOf`. I dagsläget får vi nöja oss med spanska instanser som översatts _från_ svenska.
 
-Det vore även önskvärt att kunna ange _en_ term för _all_ skönlitteratur. Visserligen finns `saogf:Sk%C3%B6nlitteratur` men den har hittills för lite användning och dess relation till marc-termerna är inte heller definierad.
 
 ### Vilka serietecknare har översatts till svenska under 1980-2020?
 ```sparql
 PREFIX : <https://id.kb.se/vocab/>
 
 SELECT DISTINCT ?cartoonist (CONCAT(?givenName, " ", ?familyName) as ?name) {
-    VALUES ?genreForm {
-        marc:ComicStrip
-        marc:ComicOrGraphicNovel
-    }
 
-    ?gf (:exactMatch|^:exactMatch|:sameAs|^:sameAs)* ?genreForm .
-    [] :instanceOf [ :genreForm ?gf ;
+    ?gf :broader* <https://id.kb.se/term/saogf/Tecknade%20serier>.
+    [] :instanceOf [ :category ?gf ;
             :language lge:swe ;
-            :translationOf/a :Work ;
+            :translationOf/a/rdfs:subClassOf* :Work ;
             :contribution [ a :PrimaryContribution ;
                     :agent ?cartoonist ] ] ;
-        :publication/:year ?year .   
+        :publication/:year ?year .
     OPTIONAL {
         ?cartoonist :givenName ?givenName ;
             :familyName ?familyName .
-    }    
+    }
 
     FILTER(str(?year) >= "1980" && str(?year) < "2020")
     FILTER(isIri(?cartoonist))
@@ -146,14 +129,15 @@ SELECT DISTINCT ?cartoonist (CONCAT(?givenName, " ", ?familyName) as ?name) {
 **Kommentar:**  
 Serietecknare som ligger som lokala entiteter (blanknoder) under `:agent` filtreras här bort. Vill man ha med även de lokala entiteterna i resultatet tar man med fördel bort `FILTER(isIri(?cartoonist))`, dock innebär detta att samma serietecknare kan förekomma flera gånger i resultatet.
 
-### Hur många franska barnböcker översättes till svenska under 1980-2020?
+### Hur många franska barnböcker översattes till svenska under 1980-2020?
 ```sparql
 PREFIX : <https://id.kb.se/vocab/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 SELECT (COUNT(DISTINCT ?book) AS ?count) {
     ?audience (:exactMatch|^:exactMatch|:sameAs|^:sameAs)* marc:Juvenile .
-    ?book :issuanceType :Monograph ;
-        :instanceOf [ a :Text ;
+    ?book :instanceOf [ a :Monograph ;
+                :category <https://id.kb.se/term/rda/Text> ;
                 :intendedAudience ?audience ;
                 :language lge:swe ;
                 :translationOf [ a :Work ;
@@ -161,11 +145,11 @@ SELECT (COUNT(DISTINCT ?book) AS ?count) {
         :publication/:year ?year .
 
     FILTER(str(?year) >= "1980" && str(?year) < "2020")
-}    
+}
 ```
 **Kommentar:**  
 Här frågar vi snarare efter antalet svenska resurser som översatts _från_ franska. Det omvända kräver att verken ligger länkade under `:translationOf`, vilket inte är fallet i dagsläget.  
-Vi frågar heller inte uteslutande efter böcker. Det är inte möjligt då det saknas en generell struktur som indikerar att en resurs är specifikt en bok. Däremot är det fullt möjligt att begränsa frågan till monografier (instansen) av typen text (verket).
+Vi frågar heller inte uteslutande efter böcker. Det är inte möjligt då det saknas en generell struktur som indikerar att en resurs är specifikt en bok. Däremot är det fullt möjligt att begränsa frågan till monografier (verkstyp) av typen text (innehållstyp i verkskategorin).
 
 ### Hur många böcker gavs ut på samiska utifrån aspekterna genre, målgrupp och utgivningsår?
 ```sparql
@@ -186,25 +170,25 @@ SELECT ?year ?audience ?genre (COUNT(?book) AS ?count) {
         lge:sms
         lge:sjk
     }
-
-    ?book :issuanceType :Monograph ;
-        :instanceOf [ a :Text ;
+    ?book :instanceOf [ a :Monograph ;
                 :language ?language ;
                 :intendedAudience ?audience ;
-                :genreForm ?genre ] ;
+                :category ?genre ] ;
         :publication/:year ?year .
 
-    FILTER(isIri(?genre))
+    FILTER(isIri(?genre) && EXISTS { ?genre a :GenreForm })
 }
 GROUP BY ?year ?audience ?genre
 ORDER BY ?year ?audience ?genre
 ```
-**Kommentar:**  
+**Kommentar:**
 Det finns ingen URI som representerar alla samiska språk, utan vi får inkludera samtliga varieteter.
 
 ### Hur många facklitterära böcker gav förlaget Natur och Kultur ut mellan åren 1920-2000?
 ```sparql
 PREFIX : <https://id.kb.se/vocab/>
+PREFIX ktg: <https://id.kb.se/term/ktg/>
+PREFIX kbrda: <https://id.kb.se/term/rda/>
 
 SELECT (COUNT(DISTINCT ?book) AS ?count) {
     VALUES ?agentLabel {
@@ -214,10 +198,9 @@ SELECT (COUNT(DISTINCT ?book) AS ?count) {
         "Natur och Kultur"
         "N&K"
     }
-    ?gf (:exactMatch|^:exactMatch|:sameAs|^:sameAs)* marc:NotFictionNotFurtherSpecified .
-    ?book :issuanceType :Monograph ;
-        :instanceOf [ a :Text ;
-                :genreForm marc:NotFictionNotFurtherSpecified ] ;
+    ?gf :broader* ktg:NonFictionLiterature . # saogf:Facklitteratur .
+    ?book :instanceOf [ a :Monograph ;
+                :category kbrda:Text, ?gf ] ;
         :publication [ a :PrimaryPublication ;
                 :agent/:label ?agentLabel ;
                 :year ?year ] .
@@ -226,16 +209,16 @@ SELECT (COUNT(DISTINCT ?book) AS ?count) {
 }
 ```
 **Kommentar:**  
-I brist på en klass som representerar facklitteratur får vi här använda `marc:NotFictionNotFurtherSpecified` (=Ej skönlitterärt verk).
 Det vore önskvärt att kunna referera till en URI som representerar förlaget Natur & Kultur men eftersom utgivare inte är länkade får vi istället matcha lokala entiteter / blanknoder på benämning.
 
 ### Hur många böcker ges ut av egenutgivare varje år?
 ```sparql
 PREFIX : <https://id.kb.se/vocab/>
+PREFIX kbrda: <https://id.kb.se/term/rda/>
 
 SELECT ?year (COUNT(DISTINCT ?book) AS ?count) {
-    ?book :issuanceType :Monograph ;
-        :instanceOf/a :Text ;
+    ?book :instanceOf [ a :Monograph ;
+          :category kbrda:Text ] ;
         :publication [ a :PrimaryPublication ;
                 :year ?year ] ;
         ^:itemOf/:hasComponent?/:cataloguersNote "nbegenutg" .
@@ -248,10 +231,9 @@ ORDER BY ?year
 PREFIX : <https://id.kb.se/vocab/>
 
 SELECT ?year (COUNT(DISTINCT ?book) AS ?count) {
-    ?audience (:exactMatch|^:exactMatch|:sameAs|^:sameAs)* marc:Juvenile .
-    ?book :issuanceType :Monograph ;
-        :instanceOf [ a :Text ;
-                :intendedAudience marc:Juvenile ] ;
+    ?book :instanceOf [ a :Monograph ;
+              :category <https://id.kb.se/term/rda/Text> ;
+              :intendedAudience marc:Juvenile ] ;
         :publication [ a :PrimaryPublication ;
                 :country ctry:sw ;
                 :year ?year ] .
@@ -268,8 +250,8 @@ Vill man undanta årtal som avviker från formen "yyyy" kan man lägga till det 
 PREFIX : <https://id.kb.se/vocab/>
 
 SELECT ?year (COUNT(DISTINCT ?book) AS ?count) {
-    ?book :issuanceType :Monograph ;
-        :instanceOf/a :Text ;
+    ?book :instanceOf [ a :Monograph ;
+          :category <https://id.kb.se/term/rda/Text> ] ;
         :publication [ a :PrimaryPublication ;
                 :country ctry:sw ;
                 :year ?year ] .
@@ -283,8 +265,8 @@ ORDER BY ?year
 PREFIX : <https://id.kb.se/vocab/>
 
 SELECT (COUNT(DISTINCT ?digiBook) AS ?count) {
-    ?digiBook :issuanceType :Monograph ;
-        :instanceOf/a :Text ;
+    ?digiBook :instanceOf [ a :Monograph ;
+               :category <https://id.kb.se/term/rda/Text> ] ;
         :production/:date "2020" ;
         ^:mainEntity/:bibliography lib:DIGI .
 }
@@ -320,16 +302,15 @@ SELECT (COUNT(DISTINCT ?publisherLabel) AS ?count) {
 **Kommentar:**  
 Här frågar vi snarare "Vilka utgivare gav ut något i Sverige under 1970?". Tillräckliga påståenden om utgivare för att besvara originalfrågan saknas. Utgivare ligger mestadels som lokala entiteter, där enbart dess benämningar anges. Här skulle vi istället vilja att utgivare representerades av URI:er och   länkats under `:agent`. På respektive URI skulle sedan relevanta påståenden kunna samlas, exempelvis när förlaget grundats och landet det verkar i.
 
-Om utgivare var länkade skulle vi också få ett mer exakt resultat, tack vare att vi då skulle kunna garantera att antalet _unika_ utgivare räknas. Att räkna blanknoder fungerar inte eftersom vi inte kan särskilja vilka som representerar samma förlag. Istället räknar vi antalet unika benämningar, även om inte heller detta sätt garanterar ett helt exakt resultat då det kan förekomma olika benämningar på samma förlag, t.ex. "Natur & Kultur" och "N&K".
+Om utgivare var länkade skulle vi också få ett mer exakt resultat, tack vare att vi då skulle kunna garantera att antalet _unika_ utgivare räknas. Att räkna blanknoder fungerar inte eftersom vi inte kan särskilja vilka som representerar samma förlag. Istället räknar vi antalet unika benämningar, även om inte heller detta sätt garanterar ett helt exakt resultat då det kan förekomma olika benämningar på samma förlag, till exempel "Natur & Kultur" och "N&K".
 
 ### Hur många barnböcker gavs ut på ett annat språk än svenska av svenska utgivare 2019?
 ```sparql
 PREFIX : <https://id.kb.se/vocab/>
 
 SELECT (COUNT(DISTINCT ?book) AS ?count) {
-    ?audience (:exactMatch|^:exactMatch|:sameAs|^:sameAs)* marc:Juvenile .
-    ?book :issuanceType :Monograph ;
-        :instanceOf [ a :Text ;
+    ?book :instanceOf [ a :Monograph ;
+                :category <https://id.kb.se/term/rda/Text> ;
                 :intendedAudience marc:Juvenile ;
                 :language ?language ] ;
         :publication [ a :PrimaryPublication ;
@@ -378,9 +359,9 @@ SELECT (COUNT(DISTINCT ?instance) AS ?count) {
 ```sparql
 PREFIX : <https://id.kb.se/vocab/>
 
-SELECT ?month (COUNT(?instance) AS ?count) {  
-    ?instance a :Print ;
-        :issuanceType :Monograph .
+SELECT ?month (COUNT(?instance) AS ?count) {
+    ?instance a :PhysicalResource ;
+        :instanceOf/a :Monograph .
     ?hold :itemOf ?instance ;
         :heldBy lib:S .
     ?holdMeta :mainEntity ?hold ;
@@ -399,11 +380,12 @@ Med katalogiserades menar vi här när beståndspost skapades. Svaret visar anta
 ```sparql
 PREFIX : <https://id.kb.se/vocab/>
 
-SELECT ?month (COUNT(DISTINCT ?instance) AS ?count) {  
-    ?instance a :Electronic ;
-        :issuanceType :Serial .
+SELECT ?month (COUNT(DISTINCT ?instance) AS ?count) {
+    ?instance a :DigitalResource ;
+        :instanceOf ?work .
+    ?work a :Serial .
     ?hold :itemOf ?instance ;
-        :heldBy lib:S .
+        :heldBy <https://libris.kb.se/library/S> .
     ?holdMeta :mainEntity ?hold ;
         :created ?date .
 
@@ -417,10 +399,12 @@ ORDER BY ?month
 ### Hur många monografier inom DDK 320 katalogiserades av Umeå universitetsbibliotek 2019?
 ```sparql
 PREFIX : <https://id.kb.se/vocab/>
+PREFIX lib: <https://libris.kb.se/library/>
 
-SELECT (COUNT(DISTINCT ?instance) AS ?count) {  
-    ?instance :issuanceType :Monograph ;
-        :instanceOf/:classification [ a :ClassificationDdc ;
+SELECT (COUNT(DISTINCT ?instance) AS ?count) {
+  ?instance :instanceOf ?work .
+  ?work a :Monograph ;
+    :classification [ a :ClassificationDdc ;
                 :code ?code ] .
     ?hold :itemOf ?instance ;
         :heldBy lib:Q .
@@ -436,7 +420,7 @@ SELECT (COUNT(DISTINCT ?instance) AS ?count) {
 ```sparql
 PREFIX : <https://id.kb.se/vocab/>
 
-SELECT (COUNT(DISTINCT ?instance) AS ?count) {  
+SELECT (COUNT(DISTINCT ?instance) AS ?count) {
     ?instance :instanceOf/:subject sao:Mission%C3%A4rer ;
         ^:itemOf ?hold .
     ?holdMeta :mainEntity ?hold ;
@@ -483,7 +467,7 @@ SELECT (COUNT(DISTINCT ?person) AS ?count) {
 }
 ```
 **Kommentar:**  
-För att få motsvarande resultat för andra entitetstyper än personer räcker det att ändra `:Person` till önskad typ, t.ex. `:Organization`.
+För att få motsvarande resultat för andra entitetstyper än personer räcker det att ändra `:Person` till önskad typ, till exempel `:Organization`.
 
 ### Vilka SAO-termer skapades år 2024?
 ```sparql
@@ -542,7 +526,7 @@ SELECT * WHERE {
 }
 ```
 **Kommentar**:  
-Kan hitta sådana som till synes ser ut att vara korrekta, men som egentligen är trasiga (t.ex. `\n0000000115796660`).
+Kan hitta sådana som till synes ser ut att vara korrekta, men som egentligen är trasiga (till exempel `\n0000000115796660`).
 
 ### Hur många katalogposter skapade den elektroniska plikten under 2023?
 ```sparql
