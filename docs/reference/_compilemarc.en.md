@@ -1,7 +1,7 @@
 ---
 title: Bibliographic record in MARCXML with holdings and authority information
 ---
-
+--8<-- "docs/snippets/_user_agent.en.md"
 ```
 GET https://libris.kb.se/_compilemarc
 ```

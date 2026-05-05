@@ -1,6 +1,7 @@
 ---
 title: Lista beståndsposter för bibliografisk post
 ---
+--8<-- "docs/snippets/_user_agent.sv.md"
 
 ```
 GET https://libris.kb.se/_findhold

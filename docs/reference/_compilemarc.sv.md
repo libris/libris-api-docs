@@ -1,6 +1,7 @@
 ---
 title: Bibliografisk post i MARCXML med bestånds- och auktoritetsinformation
 ---
+--8<-- "docs/snippets/_user_agent.sv.md"
 
 ```
 GET https://libris.kb.se/_compilemarc

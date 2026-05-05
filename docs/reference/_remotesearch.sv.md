@@ -1,8 +1,9 @@
 ---
 title: Sök i externa databaser
 ---
-!!! warning "OBS"
-    Detta anrop kräver [autentisering](../howto/auth.md).
+--8<-- "docs/snippets/_auth_warning.sv.md"
+
+--8<-- "docs/snippets/_user_agent.sv.md"
 
 ```
 GET https://libris.kb.se/_remotesearch

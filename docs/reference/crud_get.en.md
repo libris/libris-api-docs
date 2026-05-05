@@ -1,6 +1,7 @@
 ---
 title: Read a record
 ---
+--8<-- "docs/snippets/_user_agent.en.md"
 
 ```
 GET https://libris.kb.se/<id>

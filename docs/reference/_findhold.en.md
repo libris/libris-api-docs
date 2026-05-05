@@ -1,6 +1,7 @@
 ---
 title: List holdings records for a bibliographic record
 ---
+--8<-- "docs/snippets/_user_agent.en.md"
 
 ```
 GET https://libris.kb.se/_findhold

@@ -2,6 +2,7 @@
 title: MARC21
 ---
 # MARC21 export
+--8<-- "docs/snippets/_user_agent.en.md"
 
 The Libris API for MARC21 export can be accessed at:
 

@@ -1,9 +1,9 @@
 ---
 title: Uppdatera en post
 ---
+--8<-- "docs/snippets/_auth_warning.sv.md"
 
-!!! warning "OBS"
-    Detta anrop kräver [autentisering](../howto/auth.md).
+--8<-- "docs/snippets/_user_agent.sv.md"
 
 ```
 PUT https://libris.kb.se/<post-id>

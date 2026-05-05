@@ -1,6 +1,7 @@
 ---
 title: EMM
 ---
+--8<-- "docs/snippets/_user_agent.sv.md"
 
 Bas-URL: https://libris.kb.se/api/emm
 

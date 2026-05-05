@@ -1,8 +1,9 @@
 ---
 title: Create a record
 ---
-!!! warning "NOTE"
-    This request requires [authentication](../howto/auth.md).
+--8<-- "docs/snippets/_auth_warning.en.md"
+
+--8<-- "docs/snippets/_user_agent.en.md"
 
 ```
 POST https://libris.kb.se/data

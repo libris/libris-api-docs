@@ -1,6 +1,7 @@
 ---
 title: Libris search API (/find.jsonld)
 ---
+--8<-- "docs/snippets/_user_agent.en.md"
 
 This endpoint allows you to search in Libris.
 

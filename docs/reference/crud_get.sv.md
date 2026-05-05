@@ -1,6 +1,7 @@
 ---
 title: Läsa en post
 ---
+--8<-- "docs/snippets/_user_agent.sv.md"
 
 ```
 GET https://libris.kb.se/<post-id>

@@ -1,8 +1,9 @@
 ---
 title: Skapa en post
 ---
-!!! warning "OBS"
-    Detta anrop kräver [autentisering](../howto/auth.md).
+--8<-- "docs/snippets/_auth_warning.sv.md"
+
+--8<-- "docs/snippets/_user_agent.sv.md"
 
 ```
 POST https://libris.kb.se/data
