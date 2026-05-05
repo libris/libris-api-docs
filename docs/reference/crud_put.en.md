@@ -1,9 +1,9 @@
 ---
 title: Update a record
 ---
+--8<-- "docs/snippets/_auth_warning.en.md"
 
-!!! warning "NOTE"
-    This request requires [authentication](../howto/auth.md).
+--8<-- "docs/snippets/_user_agent.en.md"
 
 ```
 PUT https://libris.kb.se/<id>

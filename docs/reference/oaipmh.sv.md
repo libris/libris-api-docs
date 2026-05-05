@@ -1,6 +1,8 @@
 ---
 title: OAI-PMH
 ---
+--8<-- "docs/snippets/_user_agent.sv.md"
+
 ```
 GET https://libris.kb.se/api/oaipmh
 ```

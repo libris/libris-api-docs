@@ -1,6 +1,7 @@
 ---
 title: Biblioteksdatabasen (library database)
 ---
+--8<-- "docs/snippets/_user_agent.en.md"
 
 ```
 GET http://bibdb.libris.kb.se/api/lib

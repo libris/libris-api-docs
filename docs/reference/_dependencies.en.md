@@ -1,6 +1,7 @@
 ---
 title: List a record's dependencies
 ---
+--8<-- "docs/snippets/_user_agent.en.md"
 
 ```
 GET https://libris.kb.se/_dependencies

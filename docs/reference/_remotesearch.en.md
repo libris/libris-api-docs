@@ -1,8 +1,9 @@
 ---
 title: Search in external databases
 ---
-!!! warning "NOTE"
-    This request requires [authentication](../howto/auth.md).
+--8<-- "docs/snippets/_auth_warning.en.md"
+
+--8<-- "docs/snippets/_user_agent.en.md"
 
 ```
 GET https://libris.kb.se/_remotesearch

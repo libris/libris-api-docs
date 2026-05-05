@@ -1,8 +1,8 @@
 ---
 title: SPARQL
 ---
-
 # Libris genom SPARQL
+--8<-- "docs/snippets/_user_agent.sv.md"
 
 Libris SPARQL-endpoint finns på https://libris.kb.se/sparql.
 

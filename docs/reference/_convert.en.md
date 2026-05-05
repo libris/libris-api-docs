@@ -1,6 +1,7 @@
 ---
 title: Preview MARC21 conversion
 ---
+--8<-- "docs/snippets/_user_agent.en.md"
 
 ```
 POST https://libris.kb.se/_convert

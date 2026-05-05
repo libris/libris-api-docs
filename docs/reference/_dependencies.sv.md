@@ -1,6 +1,7 @@
 ---
 title: Lista en posts beroenden
 ---
+--8<-- "docs/snippets/_user_agent.sv.md"
 
 ```
 GET https://libris.kb.se/_dependencies

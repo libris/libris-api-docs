@@ -1,6 +1,7 @@
 ---
 title: SPARQL-exempelfrågor
 ---
+--8<-- "docs/snippets/_user_agent.sv.md"
 
 Detta dokument innehåller ett antal exempelfrågor som demonstrerar hur vår [SPARQL-endpoint](https://libris.kb.se/sparql/) kan användas för uttag av statistik från Libris XL.
 Vill man förstå syntaxen kan man med fördel läsa [W3C:s specifikation av SPARQL](https://www.w3.org/TR/sparql11-query/).

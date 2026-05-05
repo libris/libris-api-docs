@@ -1,6 +1,7 @@
 ---
 title: Förhandsgranska MARC21-konvertering
 ---
+--8<-- "docs/snippets/_user_agent.sv.md"
 
 ```
 POST https://libris.kb.se/_convert

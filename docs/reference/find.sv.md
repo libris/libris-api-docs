@@ -1,6 +1,7 @@
 ---
 title: Libris sök-API (/find.jsonld)
 ---
+--8<-- "docs/snippets/_user_agent.sv.md"
 
 Detta anrop låter dig söka i Libris.
 
