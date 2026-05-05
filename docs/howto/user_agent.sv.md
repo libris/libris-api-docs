@@ -2,7 +2,7 @@
 title: Ange en User-Agent-header
 ---
 
-När du gör anrop till Libris API:er ber vi dig att inkludera en beskrivande `User-Agent`-header. Det gör det möjligt för oss att identifiera förfrågningar från dig i våra loggar och kontakta dig vid behov.
+När du gör anrop till Libris API:er ber vi dig att inkludera en beskrivande [`User-Agent`-header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/User-Agent). Det gör det möjligt för oss att identifiera förfrågningar från dig i våra loggar och kontakta dig vid behov.
 
 Utan en meningsfull `User-Agent` ser dina anrop ut som anonym trafik. Om din användning av våra API:er orsakar oväntad belastning eller fel har vi inget sätt att meddela dig. Vid upprepade problem kan anonyma klienter anropsbegränsas eller blockeras utan förvarning.
 
@@ -16,7 +16,7 @@ User-Agent: min-biblioteksapp/1.0 (https://example.com/; kontakt@example.com)
 
 Inkludera minst:
 
-- Namn på din applikation och eventuellt versionsnummer
+- Namn på din applikation eller ditt skript och versionsnummer
 - En URL och/eller e-postadress så att vi kan kontakta dig vid behov.
 
 ## Exempel
