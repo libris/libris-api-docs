@@ -1,11 +1,11 @@
 ---
-title: Libris search API (/find)
+title: Libris search API (/find.jsonld)
 ---
 
 This endpoint allows you to search in Libris.
 
 ```
-GET https://libris.kb.se/find
+GET https://libris.kb.se/find.jsonld
 ```
 
 ## Parameters
@@ -64,19 +64,19 @@ For properties of type date (`meta.created`, `meta.modified`, and `meta.generati
 Search for `tove jansson` and `tove lindgren`, max 2 results:
 ```bash
 curl -XGET -H "Accept: application/ld+json" \
-    "https://libris.kb.se/find?q=tove%20(jansson|lindgren)&_limit=2"
+    "https://libris.kb.se/find.jsonld?q=tove%20(jansson|lindgren)&_limit=2"
 ```
 
 Links to country/Vietnam:
 ```bash
 curl -XGET -H "Accept: application/ld+json" \
-    'https://libris.kb.se/find?o=https://id.kb.se/country/vm&_limit=2'
+    'https://libris.kb.se/find.jsonld?o=https://id.kb.se/country/vm&_limit=2'
 ```
 
 Has media type (mediaType) but not carrier type (carrierType):
 ```bash
 curl -XGET -H "Accept: application/ld+json" \
-    'https://libris.kb.se/find?exists-mediaType=true&exists-carrierType=false'
+    'https://libris.kb.se/find.jsonld?exists-mediaType=true&exists-carrierType=false'
 ```
 
 Published in the 1760s:

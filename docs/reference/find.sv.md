@@ -1,11 +1,11 @@
 ---
-title: Libris sök-API (/find)
+title: Libris sök-API (/find.jsonld)
 ---
 
 Detta anrop låter dig söka i Libris.
 
 ```
-GET https://libris.kb.se/find
+GET https://libris.kb.se/find.jsonld
 ```
 
 ## Parametrar
@@ -73,19 +73,19 @@ kan värdet anges på följande format:
 Sökning efter `tove jansson` och `tove lindgren`, max 2 träffar:
 ```bash
 curl -XGET -H "Accept: application/ld+json" \
-    https://libris.kb.se/find\?q\=tove%20\(jansson\|lindgren\)\&_limit=2
+    https://libris.kb.se/find.jsonld\?q\=tove%20\(jansson\|lindgren\)\&_limit=2
 ```
 
 Länkar till country/Vietnam:
 ```bash
 curl -XGET -H "Accept: application/ld+json" \
-    'https://libris.kb.se/find?o=https://id.kb.se/country/vm&_limit=2'
+    'https://libris.kb.se/find.jsonld?o=https://id.kb.se/country/vm&_limit=2'
 ```
 
 Har medietyp (mediaType) men inte bärartyp (carrierType):
 ```bash
 curl -XGET -H "Accept: application/ld+json" \
-    'https://libris.kb.se/find?exists-mediaType=true&exists-carrierType=false'
+    'https://libris.kb.se/find.jsonld?exists-mediaType=true&exists-carrierType=false'
 ```
 
 Utgiven på 1760-talet:
